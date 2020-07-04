@@ -1,7 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+/*
+App.js : main Component
 
+
+*/
 function App() {
   return (
     <div className="App">
