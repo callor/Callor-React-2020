@@ -4,20 +4,16 @@ import { Button, Header, Image, Modal } from "semantic-ui-react";
 const ScoreModal = ({ open, setOpen }) => {
   return (
     <Modal open={open}>
-      <Modal.Header>Select a Photo</Modal.Header>
+      <Modal.Header>Your Perfect!!!</Modal.Header>
       <Modal.Content image>
         <Image
           size="medium"
-          src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
+          src={process.env.PUBLIC_URL + "/strike.png"}
           wrapped
         />
         <Modal.Description>
-          <Header>Default Profile Image</Header>
-          <p>
-            We've found the following gravatar image associated with your e-mail
-            address.
-          </p>
-          <p>Is it okay to use this photo?</p>
+          <Header>Strike</Header>
+          <Header>Your Greater Congratulations</Header>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
@@ -25,7 +21,7 @@ const ScoreModal = ({ open, setOpen }) => {
           Nope
         </Button>
         <Button
-          content="Yep, that's me"
+          content="Very Good"
           labelPosition="right"
           icon="checkmark"
           onClick={() => setOpen(false)}
