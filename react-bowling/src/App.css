@@ -3,17 +3,20 @@
 }
 
 .App-logo {
-  height: 30vmin;
+  padding: 50px;
+  height: 50vmin;
   pointer-events: none;
+  font-size: 30vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 4s alternate;
   }
 }
 
 .App-header {
+  padding: 100px 0 100px 0;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -65,9 +68,12 @@ div.bowl_stage {
   background-color: cornsilk;
   display: flex;
   align-items: center;
+  position: relative;
+  border-radius: 30px;
 }
 
-div.bowl_stage div {
+div.bowl_stage div,
+h1 {
   font-size: 50px;
   color: blue;
   margin: 20px;
@@ -77,7 +83,9 @@ div.bowl_stage div:last-child {
   margin-left: auto;
 }
 
-button.roll {
+button.roll,
+button.reset {
+  margin: 5px;
   padding: 20px 30px;
   background-color: blueviolet;
   color: white;
@@ -86,4 +94,11 @@ button.roll {
   font-size: 20px;
   font-weight: bold;
   border-radius: 10px;
+}
+button.reset {
+  background-color: orange;
+}
+
+span.bowl_pin {
+  font-size: 100px;
 }
