@@ -3,15 +3,15 @@
 }
 
 .App-logo {
-  padding: 50px;
-  height: 50vmin;
+  height: 40vmin;
   pointer-events: none;
-  font-size: 30vh;
+  font-size: 300px;
+  margin-top: 200px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 4s alternate;
+    animation: App-logo-spin infinite 20s linear;
   }
 }
 

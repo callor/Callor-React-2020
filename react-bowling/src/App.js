@@ -9,9 +9,7 @@ function App() {
         <span className="App-logo" aria-label="jsx-a11y/accessible-emoji">
           🎳
         </span>
-        <h3>
-          빛나라&nbsp;&nbsp;&nbsp;볼링대전&nbsp;&nbsp;&nbsp;2020에&nbsp;&nbsp;&nbsp;오신것을&nbsp;&nbsp;환경합니다!!!
-        </h3>
+        <h3>빛나라&nbsp;&nbsp;&nbsp;볼링대전&nbsp;&nbsp;&nbsp;2020에&nbsp;&nbsp;&nbsp;오신것을&nbsp;&nbsp;환경합니다!!!</h3>
         <StartGame />
       </header>
     </div>
