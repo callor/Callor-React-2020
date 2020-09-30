@@ -2,7 +2,6 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import StartGame from "./componet/StartGame";
-import Motion_Test from "./componet/Motion_Test";
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
         </h3>
         <StartGame />
       </header>
-      <Motion_Test />
     </div>
   );
 }
