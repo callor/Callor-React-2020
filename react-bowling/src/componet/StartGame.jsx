@@ -3,6 +3,7 @@ import { Motion, spring } from "react-motion";
 import ScoreTable from "../componet/ScoreTable";
 import ScoreModal from "../componet/SocreModal";
 import "./StartGame.css";
+import gameScore from "../script/gameScore";
 
 const players = [
   { id: 1, name: "홍길동" },
@@ -42,23 +43,30 @@ const StartGame = () => {
   //   const componentRef = useRef();
 
   const [openModal, setOpenModal] = useState(false);
-
-  const gameBoxRef = useRef(null);
-
   const [ball, setBall] = useState("/balls/bowl_ball (1).png");
   const [boxWidth, setBoxWidth] = useState(-100);
   const [left, setLeft] = useState(0);
 
+  const gameBoxRef = useRef(null);
+  const [rollPins, setRollPins] = useState(0);
+  const [rollMessage, setRollMessage] = useState("Strike!!");
+
   const btn_rolling = async (e) => {
     // alert("Game Start!! : " + boxWidth);
-    console.log("box-width", boxWidth);
+    // console.log("box-width", boxWidth);
     setLeft(+boxWidth);
     const timeoutPopup = (delay) => {
       return new Promise((res) => setTimeout(res, delay));
     };
     await timeoutPopup(1000); //1초 기다리기
+
+    const roll_pins = Math.floor(Math.random() * 11);
+    setRollPins(roll_pins);
+    setRollMessage(rollMessage == 10 ? "Strike!!!" : "Opps!!");
+
     setOpenModal(true);
     // alert("Strike!!");
+    gameScore();
   };
 
   // ball 이미지를 랜덤으로
@@ -66,7 +74,7 @@ const StartGame = () => {
     const rnd = Math.floor(Math.random() * 19);
     console.log("random", rnd);
     setBall(ball_list[rnd]);
-  });
+  }, []);
 
   // 화면이 resize 되었을때 반응할 event
   useEffect(() => {
@@ -129,7 +137,12 @@ const StartGame = () => {
         <button className="reset" onClick={btn_reset}>
           Restart !!
         </button>
-        <ScoreModal open={openModal} setOpen={setOpenModal} />
+        <ScoreModal
+          open={openModal}
+          setOpen={setOpenModal}
+          roll_pins={rollPins}
+          roll_message={rollMessage}
+        />
       </div>
     </>
   );
