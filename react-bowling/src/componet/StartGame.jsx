@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Motion, spring } from "react-motion";
 import ScoreTable from "../componet/ScoreTable";
 import ScoreModal from "../componet/SocreModal";
-import "./StartGame.css";
+import "../css/StartGame.css";
 import gameScore from "../script/gameScore";
 
 const players = [
@@ -51,6 +51,11 @@ const StartGame = () => {
   const [rollPins, setRollPins] = useState(0);
   const [rollMessage, setRollMessage] = useState("Strike!!");
 
+  //  useResize(gameBoxRef);
+  const btn_ready = (e) => {
+    setLeft(0);
+  };
+
   const btn_rolling = async (e) => {
     // alert("Game Start!! : " + boxWidth);
     // console.log("box-width", boxWidth);
@@ -60,9 +65,18 @@ const StartGame = () => {
     };
     await timeoutPopup(1000); //1초 기다리기
 
-    const roll_pins = Math.floor(Math.random() * 11);
+    let roll_pins = Math.floor(Math.random() * 12);
+    roll_pins = roll_pins >= 10 ? 10 : roll_pins;
     setRollPins(roll_pins);
-    setRollMessage(rollMessage == 10 ? "Strike!!!" : "Opps!!");
+    setRollMessage(
+      roll_pins >= 10
+        ? "Strike!!!"
+        : roll_pins >= 5
+        ? "Nice pitch"
+        : roll_pins === 0
+        ? "Gutter"
+        : "Opps!!"
+    );
 
     setOpenModal(true);
     // alert("Strike!!");
@@ -93,12 +107,7 @@ const StartGame = () => {
     let box_width = gameBoxRef.current.offsetWidth; //box_ref.current ? box_ref.current.offsetWidth : 0;
     console.log("init width", box_width);
     setBoxWidth(box_width - 200);
-  }, [gameBoxRef.current]);
-
-  //  useResize(gameBoxRef);
-  const btn_reset = (e) => {
-    setLeft(0);
-  };
+  }, [gameBoxRef]);
 
   return (
     <>
@@ -126,16 +135,18 @@ const StartGame = () => {
           <img
             src={process.env.PUBLIC_URL + "/bowl-pins.png"}
             className="pins"
+            alt="bowl_pins"
           />
         </div>
       </div>
       <br />
       <div>
+        <button className="reset" onClick={btn_ready}>
+          Ready !!
+        </button>
+
         <button className="roll" onClick={btn_rolling}>
           GO{"  "} !!
-        </button>
-        <button className="reset" onClick={btn_reset}>
-          Restart !!
         </button>
         <ScoreModal
           open={openModal}

@@ -1,0 +1,27 @@
+form.formPlayer {
+  width: 100vw;
+  border: 1px solid white;
+}
+input.playerName {
+  display: inline-block;
+  width: 60%;
+  padding: 8px;
+  border: 1 solid #ccc;
+  outline: none;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+form.formPlayer span {
+  font-size: calc(30px + 2vmin);
+  vertical-align: middle;
+  display: inline-block;
+  width: 50px;
+  padding: 1.2rem 1rem;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+form.formPlayer span:hover {
+  background-color: #666;
+}
