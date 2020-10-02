@@ -5,14 +5,6 @@ import ScoreModal from "../componet/SocreModal";
 import "../css/StartGame.css";
 import gameScore from "../script/gameScore";
 
-const players = [
-  { id: 1, name: "홍길동" },
-  { id: 2, name: "이몽룡" },
-  { id: 3, name: "성춘향" },
-  { id: 4, name: "임꺽정" },
-  { id: 5, name: "장보고" },
-];
-
 const ball_list = [
   "/balls/bowl_ball (1).png",
   "/balls/bowl_ball (2).png",
@@ -35,13 +27,10 @@ const ball_list = [
   "/balls/bowl_ball (19).png",
 ];
 
-const scoreList = players.map((player) => {
-  return <ScoreTable key={player.id} name={player.name} />;
-});
-
-const StartGame = () => {
-  //   const componentRef = useRef();
-
+const StartGame = ({ playerList }) => {
+  const scoreList = playerList.map((player) => {
+    return <ScoreTable key={player.id} name={player.playerName} />;
+  });
   const [openModal, setOpenModal] = useState(false);
   const [ball, setBall] = useState("/balls/bowl_ball (1).png");
   const [boxWidth, setBoxWidth] = useState(-100);

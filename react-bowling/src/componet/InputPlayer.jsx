@@ -1,52 +1,56 @@
 import React, { useState } from "react";
 import "../css/InputPlayer.css";
+import { NavLink } from "react-router-dom";
 
 let playerId = 0;
-const InputBox = ({ players, addPlayer, player, inputName }) => {
-  console.log("In Key", player);
-  return (
-    <div>
-      <input
-        className="playerName"
-        value={players[player.id].name}
-        onChange={inputName}
-      ></input>
-      <span className="addPlayer" onClick={addPlayer}>
-        &#43;
-      </span>
-      <span className="removePlayer">&times;</span>
-    </div>
-  );
-};
 
-const InputPlayer = () => {
-  const [players, setPlayers] = useState([{ id: 0, name: "플레이어 0" }]);
+const InputPlayer = ({ playerList, setPlayerList }) => {
   const addPlayer = (e) => {
     console.log("click id", ++playerId);
-    setPlayers(players.concat({ id: playerId, name: "플레이어 " + playerId }));
+    setPlayerList([...playerList, { id: playerId + 1, playerName: "" }]);
   };
 
-  const inputName = (e, id) => {
-    // [e.target.name] = e.target.value;
-    setPlayers([...players, { id: id, name: e.target.value }]);
+  const removePlayer = (index) => {
+    const list = [...playerList];
+    list.splice(index, 1);
+    setPlayerList(list);
+  };
+
+  const inputName = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...playerList];
+    list[index][name] = value;
+    setPlayerList(list);
   };
 
   return (
-    <div>
-      <form className="formPlayer">
-        {players.map((player) => {
-          console.log("map player id", player);
-          return (
-            <InputBox
-              players={players}
-              addPlayer={addPlayer}
-              key={player.id}
-              player={player}
-              inputName={(e) => inputName(e, player.id)}
-            />
-          );
-        })}
-      </form>
+    <div className="playerInput">
+      {playerList.map((player, index) => {
+        return (
+          <div>
+            <input
+              name="playerName"
+              placeholder="플레이어 이름을 입력하세요"
+              className="playerName"
+              value={player.playerName}
+              onChange={(e) => inputName(e, index)}
+            ></input>
+            <div className="add-btn-box">
+              {playerList.length !== 1 && (
+                <span onClick={(e) => removePlayer(index)}>&times;</span>
+              )}
+              {playerList.length - 1 === index && (
+                <span onClick={addPlayer}>&#43;</span>
+              )}
+            </div>
+          </div>
+        );
+      })}
+      <div className="start-btn-box">
+        <NavLink className="btn-start-game" to="/startGame">
+          게임 시작
+        </NavLink>
+      </div>
     </div>
   );
 };
