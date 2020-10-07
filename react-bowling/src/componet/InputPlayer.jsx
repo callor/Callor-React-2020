@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/InputPlayer.css";
 import { NavLink } from "react-router-dom";
 
@@ -28,20 +28,10 @@ const InputPlayer = ({ playerList, setPlayerList }) => {
       {playerList.map((player, index) => {
         return (
           <div>
-            <input
-              name="playerName"
-              placeholder="플레이어 이름을 입력하세요"
-              className="playerName"
-              value={player.playerName}
-              onChange={(e) => inputName(e, index)}
-            ></input>
+            <input name="playerName" placeholder="플레이어 이름을 입력하세요" className="playerName" value={player.playerName} onChange={(e) => inputName(e, index)}></input>
             <div className="add-btn-box">
-              {playerList.length !== 1 && (
-                <span onClick={(e) => removePlayer(index)}>&times;</span>
-              )}
-              {playerList.length - 1 === index && (
-                <span onClick={addPlayer}>&#43;</span>
-              )}
+              {playerList.length !== 1 && <span onClick={(e) => removePlayer(index)}>&times;</span>}
+              {playerList.length - 1 === index && <span onClick={addPlayer}>&#43;</span>}
             </div>
           </div>
         );

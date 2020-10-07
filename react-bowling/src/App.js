@@ -9,30 +9,17 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img
-          src={process.env.PUBLIC_URL + "/bowl-logo.png"}
-          className="App-logo"
-          alt="logo"
-        />
+        <img src={process.env.PUBLIC_URL + "/bowl-logo.png"} className="App-logo" alt="logo" />
 
-        <h3>
-          빛나라&nbsp;&nbsp;&nbsp;볼링대전&nbsp;&nbsp;&nbsp;2020에&nbsp;&nbsp;&nbsp;오신것을&nbsp;&nbsp;환경합니다!!!
-        </h3>
+        <h3>빛나라&nbsp;&nbsp;&nbsp;볼링대전&nbsp;&nbsp;&nbsp;2020에&nbsp;&nbsp;&nbsp;오신것을&nbsp;&nbsp;환경합니다!!!</h3>
+        <div>
+          <p>SSL_CRT_FILE : {process.env.SSL_CRT_FILE}</p>
+          <p>SSL_CRT_FILE : {process.env.REACT_APP_SSL_CRT_FILE}</p>
+          <p>SSL_KEY_FILE : {process.env.REACT_APP_SSL_KEY_FILE}</p>
+        </div>
         <Router>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <InputPlayer
-                playerList={playerList}
-                setPlayerList={setPlayerList}
-              />
-            )}
-          />
-          <Route
-            path="/startGame"
-            render={() => <StartGame playerList={playerList} />}
-          />
+          <Route exact path="/" render={() => <InputPlayer playerList={playerList} setPlayerList={setPlayerList} />} />
+          <Route path="/startGame" render={() => <StartGame playerList={playerList} />} />
         </Router>
       </header>
     </div>
