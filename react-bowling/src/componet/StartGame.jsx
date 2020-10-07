@@ -2,46 +2,87 @@ import React, { useState, useEffect, useRef } from "react";
 import { Motion, spring } from "react-motion";
 import ScoreTable from "../componet/ScoreTable";
 import ScoreModal from "../componet/SocreModal";
+import "../css/StartGame.css";
+import gameScore from "../script/gameScore";
 
-const players = [
-  { id: 1, name: "홍길동" },
-  { id: 2, name: "이몽룡" },
-  { id: 3, name: "성춘향" },
-  { id: 4, name: "임꺽정" },
-  { id: 5, name: "장보고" },
+const ball_list = [
+  "/balls/bowl_ball (1).png",
+  "/balls/bowl_ball (2).png",
+  "/balls/bowl_ball (3).png",
+  "/balls/bowl_ball (4).png",
+  "/balls/bowl_ball (5).png",
+  "/balls/bowl_ball (6).png",
+  "/balls/bowl_ball (7).png",
+  "/balls/bowl_ball (8).png",
+  "/balls/bowl_ball (9).png",
+  "/balls/bowl_ball (10).png",
+  "/balls/bowl_ball (11).png",
+  "/balls/bowl_ball (12).png",
+  "/balls/bowl_ball (13).png",
+  "/balls/bowl_ball (14).png",
+  "/balls/bowl_ball (15).png",
+  "/balls/bowl_ball (16).png",
+  "/balls/bowl_ball (17).png",
+  "/balls/bowl_ball (18).png",
+  "/balls/bowl_ball (19).png",
 ];
 
-const scoreList = players.map((player) => {
-  return <ScoreTable key={player.id} name={player.name} />;
-});
-
-const StartGame = () => {
-  //   const componentRef = useRef();
-
-  const [open, setOpen] = useState(false);
-
-  const gameBoxRef = useRef(null);
-  const ballRef = useRef(null);
-
+const StartGame = ({ playerList }) => {
+  const scoreList = playerList.map((player) => {
+    return <ScoreTable key={player.id} name={player.playerName} />;
+  });
+  const [openModal, setOpenModal] = useState(false);
+  const [ball, setBall] = useState("/balls/bowl_ball (1).png");
   const [boxWidth, setBoxWidth] = useState(-100);
   const [left, setLeft] = useState(0);
 
+  const gameBoxRef = useRef(null);
+  const [rollPins, setRollPins] = useState(0);
+  const [rollMessage, setRollMessage] = useState("Strike!!");
+
+  //  useResize(gameBoxRef);
+  const btn_ready = (e) => {
+    setLeft(0);
+  };
+
   const btn_rolling = async (e) => {
     // alert("Game Start!! : " + boxWidth);
-    console.log("box-width", boxWidth);
+    // console.log("box-width", boxWidth);
     setLeft(+boxWidth);
     const timeoutPopup = (delay) => {
       return new Promise((res) => setTimeout(res, delay));
     };
     await timeoutPopup(1000); //1초 기다리기
-    setOpen(true);
+
+    let roll_pins = Math.floor(Math.random() * 12);
+    roll_pins = roll_pins >= 10 ? 10 : roll_pins;
+    setRollPins(roll_pins);
+    setRollMessage(
+      roll_pins >= 10
+        ? "Strike!!!"
+        : roll_pins >= 5
+        ? "Nice pitch"
+        : roll_pins === 0
+        ? "Gutter"
+        : "Opps!!"
+    );
+
+    setOpenModal(true);
     // alert("Strike!!");
+    gameScore();
   };
+
+  // ball 이미지를 랜덤으로
+  useEffect(() => {
+    const rnd = Math.floor(Math.random() * 19);
+    console.log("random", rnd);
+    setBall(ball_list[rnd]);
+  }, []);
 
   // 화면이 resize 되었을때 반응할 event
   useEffect(() => {
     const handleResize = () => {
-      let box_width = gameBoxRef.current.offsetWidth - 100; //box_ref.current ? box_ref.current.offsetWidth : 0;
+      let box_width = gameBoxRef.current.offsetWidth - 200; //box_ref.current ? box_ref.current.offsetWidth : 0;
       console.log("resize width", box_width);
       setBoxWidth(box_width);
     };
@@ -54,13 +95,8 @@ const StartGame = () => {
   useEffect(() => {
     let box_width = gameBoxRef.current.offsetWidth; //box_ref.current ? box_ref.current.offsetWidth : 0;
     console.log("init width", box_width);
-    setBoxWidth(box_width - 100);
-  }, [gameBoxRef.current]);
-
-  //  useResize(gameBoxRef);
-  const btn_reset = (e) => {
-    setLeft(0);
-  };
+    setBoxWidth(box_width - 200);
+  }, [gameBoxRef]);
 
   return (
     <>
@@ -76,27 +112,37 @@ const StartGame = () => {
                 ...interpolatedStyle,
               }}
             >
-              <span role="img" aria-label="Bowling Ball">
-                🔵
-              </span>
+              <img
+                src={process.env.PUBLIC_URL + `${ball}`}
+                className="ball"
+                alt={ball}
+              />
             </h1>
           )}
         </Motion>
         <div>
-          <span className="bowl_pin" role="img" aria-label="Bowling Pin">
-            🎳
-          </span>
+          <img
+            src={process.env.PUBLIC_URL + "/bowl-pins.png"}
+            className="pins"
+            alt="bowl_pins"
+          />
         </div>
       </div>
       <br />
       <div>
+        <button className="reset" onClick={btn_ready}>
+          Ready !!
+        </button>
+
         <button className="roll" onClick={btn_rolling}>
           GO{"  "} !!
         </button>
-        <button className="reset" onClick={btn_reset}>
-          Restart !!
-        </button>
-        <ScoreModal open={open} setOpen={setOpen} />
+        <ScoreModal
+          open={openModal}
+          setOpen={setOpenModal}
+          roll_pins={rollPins}
+          roll_message={rollMessage}
+        />
       </div>
     </>
   );

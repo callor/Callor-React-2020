@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Header, Image, Modal } from "semantic-ui-react";
 
-const ScoreModal = ({ open, setOpen }) => {
+const ScoreModal = ({ open, setOpen, roll_pins, roll_message }) => {
   return (
     <Modal open={open}>
       <Modal.Header>Your Perfect!!!</Modal.Header>
@@ -12,8 +12,9 @@ const ScoreModal = ({ open, setOpen }) => {
           wrapped
         />
         <Modal.Description>
-          <Header>Strike</Header>
+          <Header>{roll_message}</Header>
           <Header>Your Greater Congratulations</Header>
+          <Header size="huge">{roll_pins}</Header>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>

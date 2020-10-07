@@ -1,0 +1,49 @@
+div.playerInput {
+  width: 100vw;
+}
+input.playerName {
+  display: inline-block;
+  width: 40%;
+  padding: 8px;
+  border: 1 solid #ccc;
+  outline: none;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+div.playerInput div.add-btn-box {
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}
+
+div.playerInput span {
+  font-size: calc(30px + 2vmin);
+  vertical-align: middle;
+  display: inline-block;
+  width: 50px;
+  padding: 1.2rem 1rem;
+  margin-left: 20px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+div.playerInput span:hover {
+  background-color: #666;
+}
+
+div.playerInput a.btn-start-game {
+  display: inline-block;
+  background-color: greenyellow;
+  color: black;
+  border: 0;
+  outline: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+
+div.playerInput div.start-btn-box {
+  margin: 0 auto;
+  width: 30vw;
+  text-align: right;
+}
