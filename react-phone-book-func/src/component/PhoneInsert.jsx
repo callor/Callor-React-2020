@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 const PhoneInsert = ({ insertPhoneBook }) => {
-  [name, setName] = useState("")[(number, setNumber)] = useState("");
+  [name, setName] = useState("");
+  [number, setNumber] = useState("");
 
   return (
     <form>
