@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const PhoneInsert = ({ insertPhoneBook }) => {
+  [name, setName] = useState("")[(number, setNumber)] = useState("");
+
   return (
     <form>
       <input placeholder="이름" />
