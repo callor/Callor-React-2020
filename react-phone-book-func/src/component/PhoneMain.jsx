@@ -10,10 +10,10 @@ const PhoneMain = () => {
     { id: 3, name: "홍길동", number: "010-333" },
   ]);
 
-  const insertPhoneBook = () => {
+  const insertPhoneBook = (name, number) => {
     setPhoneBook([
       ...phoneBook,
-      { id: nextId.current++, name: "김범용", number: "010-555" },
+      { id: nextId.current++, name: name, number: number },
     ]);
   };
 
