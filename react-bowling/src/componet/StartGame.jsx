@@ -27,18 +27,27 @@ const ball_list = [
   "/balls/bowl_ball (19).png",
 ];
 
-const StartGame = ({ playerList }) => {
-  const scoreList = playerList.map((player) => {
-    return <ScoreTable key={player.id} name={player.playerName} />;
+const StartGame = ({ playerList, setPlayerList }) => {
+  const scoreBoardList = playerList.map((player) => {
+    return <ScoreTable key={player.id} player={player} />;
   });
-  const [openModal, setOpenModal] = useState(false);
+
+  /**
+   * 게임 stage UI 변수들
+   */
   const [ball, setBall] = useState("/balls/bowl_ball (1).png");
+
+  const [openModal, setOpenModal] = useState(false);
+
   const [boxWidth, setBoxWidth] = useState(-100);
   const [left, setLeft] = useState(0);
 
   const gameBoxRef = useRef(null);
   const [rollPins, setRollPins] = useState(0);
   const [rollMessage, setRollMessage] = useState("Strike!!");
+  const [playerName, setPlayerName] = useState("");
+
+  const playerIndex = useRef(0);
 
   //  useResize(gameBoxRef);
   const btn_ready = (e) => {
@@ -67,10 +76,37 @@ const StartGame = ({ playerList }) => {
         : "Opps!!"
     );
 
+    // 현재 게임중인 플레이어 객체
+    const thisPlayer = playerList[playerIndex.current];
+
+    // 몇번째 pitch 인가
+    const pitchPoint = thisPlayer.pitchs.length;
+    if (pitchPoint > 10) alert("Game Over!!!");
+
+    // 점수를 추가
+    const pitchs = [...thisPlayer.pitchs, roll_pins];
+    // 현재 플레이어 객체에 점수 리스트 추가
+    const player = { ...thisPlayer, pitchs: pitchs };
+
+    // 현재 게임중인 플레이어 정보 갱신
+    setPlayerList([
+      ...playerList.slice(0, playerIndex.current),
+      player,
+      ...playerList.slice(playerIndex.current + 1),
+    ]);
+
     setOpenModal(true);
-    // alert("Strike!!");
+    setLeft(0);
     gameScore();
   };
+
+  useEffect(() => {
+    playerIndex.current = 0;
+    const thisPlayer = playerList[playerIndex.current].playerName;
+
+    // 현재 게임중인 플레이어 이름보이기
+    setPlayerName(thisPlayer.playerName);
+  }, [playerList]);
 
   // ball 이미지를 랜덤으로
   useEffect(() => {
@@ -100,8 +136,12 @@ const StartGame = ({ playerList }) => {
 
   return (
     <>
-      {scoreList}
+      {scoreBoardList}
       <br />
+      <br />
+      <br />
+      <br />
+      <div>{playerName}...rolling...</div>
       <br />
       <div className="bowl_stage" ref={gameBoxRef}>
         <Motion defaultStyle={{ left: 20 }} style={{ left: spring(left) }}>
