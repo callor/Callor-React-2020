@@ -1,0 +1,49 @@
+table.phoneList {
+  width: 50%;
+  margin: 10px auto;
+  border: none;
+  border-collapse: collapse;
+  font-size: 1.3rem;
+}
+
+table.phoneList tr:nth-child(even) {
+  background-color: #333;
+}
+
+table.phoneList tr:hover {
+  background-color: #555;
+}
+
+table.phoneList td,
+table.phoneList th {
+  border: 1px solid #777;
+  padding: 8px;
+  cursor: pointer;
+}
+
+table.phoneList td:first-child,
+table.phoneList th:first-child {
+  border-left: none;
+}
+
+table.phoneList td:last-child,
+table.phoneList th:last-child {
+  border-right: none;
+}
+
+table.phoneList th {
+  background-color: #666;
+  color: yellowgreen;
+}
+
+table.phoneList td {
+  font-weight: normal;
+}
+
+td.delete {
+  cursor: pointer;
+}
+
+td.delete:hover {
+  background-color: #777;
+}

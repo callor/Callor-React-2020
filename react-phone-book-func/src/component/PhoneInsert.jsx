@@ -1,3 +1,4 @@
+import "../css/PhoneInsert.css";
 import React, { useState, useReducer } from "react";
 
 const PhoneInsert = ({ insertPhoneBook }) => {
@@ -28,7 +29,7 @@ const PhoneInsert = ({ insertPhoneBook }) => {
    */
   // reducer의 dispatch에 연결할 callback
   const reducer = (obj, action) => {
-    if (action.type == "CLEAR_FORM") return { name: "", number: "" };
+    if (action.type === "CLEAR_FORM") return { name: "", number: "" };
     return {
       ...obj,
       [action.name]: action.value,
@@ -60,7 +61,7 @@ const PhoneInsert = ({ insertPhoneBook }) => {
   };
 
   return (
-    <form>
+    <form class="phoneForm">
       <input placeholder="이름" name="name" value={name} onChange={onChange} />
       <input
         placeholder="전화번호"

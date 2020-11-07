@@ -1,27 +1,52 @@
 import React, { useState, useRef } from "react";
+import "../css/PhoneMain.css";
 import PhoneInsert from "./PhoneInsert";
 import PhoneList from "./PhoneList";
 
 const PhoneMain = () => {
   const nextId = useRef(4);
-  const [phoneBook, setPhoneBook] = useState([
-    { id: 1, name: "이몽룡", number: "010-111" },
-    { id: 2, name: "성춘향", number: "010-222" },
-    { id: 3, name: "홍길동", number: "010-333" },
+  const [phoneBooks, setPhoneBooks] = useState([
+    { id: 1, name: "이몽룡", number: "010-111", editable: false },
+    { id: 2, name: "성춘향", number: "010-222", editable: false },
+    { id: 3, name: "홍길동", number: "010-333", editable: false },
   ]);
 
   const insertPhoneBook = (name, number) => {
-    setPhoneBook([
-      ...phoneBook,
-      { id: nextId.current++, name: name, number: number },
+    setPhoneBooks([
+      ...phoneBooks,
+      { id: nextId.current++, name: name, number: number, editable: false },
     ]);
   };
 
+  const deletePhoneBook = (id) => {
+    console.log("삭제할 ID", id);
+    const filterBooks = phoneBooks.filter((phone) => {
+      console.log(phone.id, id);
+      return phone.id !== Number(id);
+    });
+    console.log(filterBooks);
+    setPhoneBooks(filterBooks);
+  };
+
+  const editPhoneBook = (id) => {
+    const editBooks = phoneBooks.map((phone) => {
+      if (phone.id === Number(id)) {
+        return { ...phone, editable: true };
+      }
+      return phone;
+    });
+    setPhoneBooks(editBooks);
+  };
+
   return (
-    <>
+    <div className="phoneMain">
       <PhoneInsert insertPhoneBook={insertPhoneBook} />
-      <PhoneList phoneBook={phoneBook} />
-    </>
+      <PhoneList
+        phoneBooks={phoneBooks}
+        editPhoneBook={editPhoneBook}
+        deletePhoneBook={deletePhoneBook}
+      />
+    </div>
   );
 };
 
