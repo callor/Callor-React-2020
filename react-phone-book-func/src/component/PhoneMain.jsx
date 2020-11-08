@@ -51,12 +51,14 @@ const PhoneMain = () => {
 
   return (
     <div className="phoneMain">
-      <PhoneInsert insertPhoneBook={insertPhoneBook} />
+      <h1>나만의 주소록</h1>
+
       <PhoneList
         phoneBooks={phoneBooks}
         editPhoneBook={editPhoneBook}
         deletePhoneBook={deletePhoneBook}
       />
+      <PhoneInsert insertPhoneBook={insertPhoneBook} />
     </div>
   );
 };
