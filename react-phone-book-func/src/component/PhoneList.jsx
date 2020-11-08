@@ -1,10 +1,32 @@
 import "../css/PhoneList.css";
-import React from "react";
+import React, { useReducer } from "react";
 
 // (props) : 전달받은 매개변수 모두를 사용하겠다
 // {변수명} : 전달받은 매개변수중 변수명에 해당하는
 //      값만 추출해달라
 const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
+  const reducer = (obj, action) => {
+    if (action.type === "CLEAR_FORM") return { name: "", number: "" };
+    return {
+      ...obj,
+      [action.name]: action.value,
+    };
+  };
+
+  // useReducer()를 사용하여 sate 변수와 dispatch설정
+  const [state, dispatch] = useReducer(reducer, {
+    name: "",
+    number: "",
+  });
+
+  // reducer로 선언된 변수를 Component에서 사용할 수 있도록 선언
+  // const { name, number } = state;
+
+  // reducer의 dispatch를 이용하여 여러개의 input box chanage event를 하나로 공통처리
+  const onChange = (e) => {
+    dispatch(e.target);
+  };
+
   const trOnClick = (e) => {
     const className = e.target.className;
     const closest = e.target.closest("TR");
@@ -16,6 +38,8 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
         deletePhoneBook(id);
       }
       return false;
+    } else if (className === "update-ok") {
+      alert("변경할래 ?!!?!?!");
     }
     editPhoneBook(id);
   };
@@ -29,14 +53,19 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
           onClick={trOnClick}
           data-name={phone.name}
           data-id={phone.id}
+          className="update"
         >
           <td>
-            <input value={phone.name} />
+            <input value={phone.name} className="update" onChange={onChange} />
           </td>
           <td>
-            <input value={phone.number} />
+            <input
+              value={phone.number}
+              className="update"
+              onChange={onChange}
+            />
           </td>
-          <td className="delete">&times;</td>
+          <td className="update-ok">&#10003;</td>
         </tr>
       );
     } else {
@@ -61,7 +90,7 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
         <tr>
           <th>이름</th>
           <th>전화번호</th>
-          <th>삭제</th>
+          <th>&hearts;</th>
         </tr>
       </thead>
       <tbody>{phoneItems}</tbody>
