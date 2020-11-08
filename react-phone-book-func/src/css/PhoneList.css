@@ -47,3 +47,7 @@ td.delete {
 td.delete:hover {
   background-color: #777;
 }
+
+table.phoneList .update {
+  padding: 10px;
+}

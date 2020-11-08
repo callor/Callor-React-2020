@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../css/PhoneMain.css";
 import PhoneInsert from "./PhoneInsert";
 import PhoneList from "./PhoneList";
@@ -32,11 +32,22 @@ const PhoneMain = () => {
     const editBooks = phoneBooks.map((phone) => {
       if (phone.id === Number(id)) {
         return { ...phone, editable: true };
+      } else {
+        return { ...phone, editable: false };
       }
-      return phone;
     });
     setPhoneBooks(editBooks);
   };
+
+  useEffect(() => {
+    const loadPhoneBooks = window.localStorage.getItem("phoneBook");
+    setPhoneBooks(JSON.parse(loadPhoneBooks));
+  }, []);
+
+  useEffect(() => {
+    console.log("phoneBooks");
+    window.localStorage.setItem("phoneBook", JSON.stringify(phoneBooks));
+  }, [phoneBooks]);
 
   return (
     <div className="phoneMain">

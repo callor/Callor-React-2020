@@ -1,5 +1,5 @@
 import "../css/PhoneInsert.css";
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 
 const PhoneInsert = ({ insertPhoneBook }) => {
   //
@@ -28,6 +28,29 @@ const PhoneInsert = ({ insertPhoneBook }) => {
    *    이 type을 비교하여 어려가지 연산을 수행한다.
    */
   // reducer의 dispatch에 연결할 callback
+  // const reducer = (obj, action) => {
+  //   if (action.type === "CLEAR_FORM") return { name: "", number: "" };
+  //   return {
+  //     ...obj,
+  //     [action.name]: action.value,
+  //   };
+  // };
+
+  // // useReducer()를 사용하여 sate 변수와 dispatch설정
+  // const [state, dispatch] = useReducer(reducer, {
+  //   name: "",
+  //   number: "",
+  // });
+
+  // // reducer로 선언된 변수를 Component에서 사용할 수 있도록 선언
+  // const { name, number } = state;
+
+  // // reducer의 dispatch를 이용하여 여러개의 input box chanage event를 하나로 공통처리
+  // const onChange = (e) => {
+  //   dispatch(e.target);
+  // };
+  // useReducer()를 사용하여 sate 변수와 dispatch설정
+
   const reducer = (obj, action) => {
     if (action.type === "CLEAR_FORM") return { name: "", number: "" };
     return {
@@ -36,20 +59,18 @@ const PhoneInsert = ({ insertPhoneBook }) => {
     };
   };
 
-  // useReducer()를 사용하여 sate 변수와 dispatch설정
-  const [state, dispatch] = useReducer(reducer, {
+  const [reduceState, dispatch] = useReducer(reducer, {
     name: "",
     number: "",
   });
 
   // reducer로 선언된 변수를 Component에서 사용할 수 있도록 선언
-  const { name, number } = state;
+  const { name, number } = reduceState;
 
   // reducer의 dispatch를 이용하여 여러개의 input box chanage event를 하나로 공통처리
   const onChange = (e) => {
     dispatch(e.target);
   };
-
   const onClick = (e) => {
     insertPhoneBook(name, number);
 

@@ -31,10 +31,10 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
           data-id={phone.id}
         >
           <td>
-            <input value={phone.name} />
+            <input value={phone.name} className="update" />
           </td>
           <td>
-            <input value={phone.number} />
+            <input value={phone.number} className="update" />
           </td>
           <td className="delete">&times;</td>
         </tr>

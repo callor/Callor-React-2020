@@ -55,15 +55,32 @@ const StartGame = ({ playerList, setPlayerList }) => {
   };
 
   const btn_rolling = async (e) => {
-    // alert("Game Start!! : " + boxWidth);
-    // console.log("box-width", boxWidth);
+    // rollig 애니메이션
     setLeft(+boxWidth);
     const timeoutPopup = (delay) => {
       return new Promise((res) => setTimeout(res, delay));
     };
     await timeoutPopup(1000); //1초 기다리기
 
-    let roll_pins = Math.floor(Math.random() * 12);
+    // 현재 게임중인 플레이어 객체
+    const thisPlayer = playerList[playerIndex.current];
+
+    // 몇번째 pitch 인가
+    // pitch에 따라 roll_pin 개수를 다시 정함
+    const pitchPoint = thisPlayer.pitchs.length;
+    let perfect_pins = 12;
+    let roll_pins = Math.floor(Math.random() * perfect_pins);
+
+    // 1,2,3,4,5,6, 7, 8, 9, 10,10,10
+    // 0,2,4,6,8,10,12,14,16,18,20,22
+    // 첫 frame 첫 pitch가 아니고 홀수 pitch 이면
+    // 이전 pitch 에서 남은 핀만큼
+    if (pitchPoint > 0 && pitchPoint % 2 != 0) {
+      let prevPins = thisPlayer.pitchs[pitchPoint - 1];
+      perfect_pins = 10 - prevPins;
+      roll_pins = roll_pins % 2 === 0 ? perfect_pins : roll_pins;
+    }
+
     roll_pins = roll_pins >= 10 ? 10 : roll_pins;
     setRollPins(roll_pins);
     setRollMessage(
@@ -76,11 +93,6 @@ const StartGame = ({ playerList, setPlayerList }) => {
         : "Opps!!"
     );
 
-    // 현재 게임중인 플레이어 객체
-    const thisPlayer = playerList[playerIndex.current];
-
-    // 몇번째 pitch 인가
-    const pitchPoint = thisPlayer.pitchs.length;
     if (pitchPoint > 10) alert("Game Over!!!");
 
     // 점수를 추가
