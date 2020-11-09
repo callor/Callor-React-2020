@@ -4,12 +4,12 @@ import PhoneInsert from "./PhoneInsert";
 import PhoneList from "./PhoneList";
 
 const PhoneMain = () => {
-  const nextId = useRef(4);
   const [phoneBooks, setPhoneBooks] = useState([
-    { id: 1, name: "이몽룡", number: "010-111", editable: false },
-    { id: 2, name: "성춘향", number: "010-222", editable: false },
-    { id: 3, name: "홍길동", number: "010-333", editable: false },
+    // { id: 0, name: "이몽룡", number: "010-111", editable: false },
+    // { id: 1, name: "성춘향", number: "010-222", editable: false },
+    // { id: 2, name: "홍길동", number: "010-333", editable: false },
   ]);
+  const nextId = useRef(phoneBooks.length);
 
   const insertPhoneBook = (name, number) => {
     setPhoneBooks([
@@ -39,9 +39,21 @@ const PhoneMain = () => {
     setPhoneBooks(editBooks);
   };
 
+  const updatePhoneBook = (id, name, number) => {
+    const updateBooks = phoneBooks.map((phone) => {
+      if (phone.id === Number(id)) {
+        return { ...phone, name: name, number: number, editable: false };
+      } else {
+        return { ...phone, editable: false };
+      }
+    });
+    setPhoneBooks(updateBooks);
+  };
+
   useEffect(() => {
-    const loadPhoneBooks = window.localStorage.getItem("phoneBook");
-    setPhoneBooks(JSON.parse(loadPhoneBooks));
+    const loadPhoneBooks = JSON.parse(window.localStorage.getItem("phoneBook"));
+    nextId.current = loadPhoneBooks.length;
+    setPhoneBooks(loadPhoneBooks);
   }, []);
 
   useEffect(() => {
@@ -51,12 +63,13 @@ const PhoneMain = () => {
 
   return (
     <div className="phoneMain">
-      <h1>나만의 주소록</h1>
+      <h1>나의 연락처</h1>
 
       <PhoneList
         phoneBooks={phoneBooks}
         editPhoneBook={editPhoneBook}
         deletePhoneBook={deletePhoneBook}
+        updatePhoneBook={updatePhoneBook}
       />
       <PhoneInsert insertPhoneBook={insertPhoneBook} />
     </div>

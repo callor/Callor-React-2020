@@ -48,19 +48,8 @@ td.delete:hover {
   background-color: #777;
 }
 
-<<<<<<< HEAD
 table.phoneList .update {
   padding: 10px;
-=======
-table.phoneList input.update {
-  padding: 8px;
-  display: inline-block;
-  width: 100%;
-  font-size: 1.2rem;
-}
-
-table.phoneList .update-ok {
-  font-weight: 900;
-  color: blueviolet;
->>>>>>> be36653bf87327acc64433be4a993a3e2a0abf8c
+  outline: none;
+  text-align: center;
 }

@@ -4,7 +4,12 @@ import React, { useReducer } from "react";
 // (props) : 전달받은 매개변수 모두를 사용하겠다
 // {변수명} : 전달받은 매개변수중 변수명에 해당하는
 //      값만 추출해달라
-const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
+const PhoneList = ({
+  phoneBooks,
+  editPhoneBook,
+  deletePhoneBook,
+  updatePhoneBook,
+}) => {
   const reducer = (obj, action) => {
     if (action.type === "CLEAR_FORM") return { name: "", number: "" };
     return {
@@ -20,7 +25,7 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
   });
 
   // reducer로 선언된 변수를 Component에서 사용할 수 있도록 선언
-  // const { name, number } = state;
+  const { name, number } = state;
 
   // reducer의 dispatch를 이용하여 여러개의 input box chanage event를 하나로 공통처리
   const onChange = (e) => {
@@ -30,9 +35,9 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
   const trOnClick = (e) => {
     const className = e.target.className;
     const closest = e.target.closest("TR");
-    const name = closest.dataset.name;
+    const data_name = closest.dataset.name;
     const id = closest.dataset.id;
-    console.log(id, name);
+    console.log(id, data_name);
     if (className === "delete") {
       if (window.confirm("정말 삭제합니다!!!")) {
         deletePhoneBook(id);
@@ -40,6 +45,8 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
       return false;
     } else if (className === "update-ok") {
       alert("변경할래 ?!!?!?!");
+      updatePhoneBook(id, state.name, state.number);
+      return false;
     }
     editPhoneBook(id);
   };
@@ -47,6 +54,8 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
   const phoneItems = phoneBooks.map((phone) => {
     console.log(phone.editable);
     if (phone.editable) {
+      state.name = phone.name;
+      state.number = phone.number;
       return (
         <tr
           key={phone.id}
@@ -56,21 +65,26 @@ const PhoneList = ({ phoneBooks, editPhoneBook, deletePhoneBook }) => {
           className="update"
         >
           <td>
-<<<<<<< HEAD
-            <input value={phone.name} className="update" />
-          </td>
-          <td>
-            <input value={phone.number} className="update" />
-=======
-            <input value={phone.name} className="update" onChange={onChange} />
+            <input
+              value={name}
+              name="name"
+              className="update"
+              onChange={onChange}
+              onClick={(e) => {
+                e.target.select();
+              }}
+            />
           </td>
           <td>
             <input
-              value={phone.number}
+              value={number}
+              name="number"
               className="update"
               onChange={onChange}
+              onClick={(e) => {
+                e.target.select();
+              }}
             />
->>>>>>> be36653bf87327acc64433be4a993a3e2a0abf8c
           </td>
           <td className="update-ok">&#10003;</td>
         </tr>
