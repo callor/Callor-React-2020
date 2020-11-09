@@ -1,6 +1,14 @@
 import "../css/PhoneList.css";
 import React, { useReducer } from "react";
 
+const reducer = (obj, action) => {
+  if (action.type === "CLEAR_FORM") return { name: "", number: "" };
+  return {
+    ...obj,
+    [action.name]: action.value,
+  };
+};
+
 // (props) : 전달받은 매개변수 모두를 사용하겠다
 // {변수명} : 전달받은 매개변수중 변수명에 해당하는
 //      값만 추출해달라
@@ -10,14 +18,6 @@ const PhoneList = ({
   deletePhoneBook,
   updatePhoneBook,
 }) => {
-  const reducer = (obj, action) => {
-    if (action.type === "CLEAR_FORM") return { name: "", number: "" };
-    return {
-      ...obj,
-      [action.name]: action.value,
-    };
-  };
-
   // useReducer()를 사용하여 sate 변수와 dispatch설정
   const [state, dispatch] = useReducer(reducer, {
     name: "",
