@@ -3,7 +3,7 @@ import PhoneView from "./PhoneView";
 
 class PhoneInfoList extends Component {
   static defaultProps = {
-    data: []
+    data: [],
   };
 
   /*
@@ -17,12 +17,11 @@ class PhoneInfoList extends Component {
 
   render() {
     const { data, onRemove, onUpdate } = this.props;
-    const list = data.map(info => (
+    const list = data.map((info) => (
       <PhoneView
         key={info.id}
         info={info}
         onRemove={onRemove}
-        onUpdate={onUpdate}
         onUpdate={onUpdate}
       />
     ));
