@@ -82,7 +82,7 @@ const PhoneInsert = ({ insertPhoneBook }) => {
   };
 
   return (
-    <form class="phoneForm">
+    <form className="phoneForm">
       <input placeholder="이름" name="name" value={name} onChange={onChange} />
       <input
         placeholder="전화번호"

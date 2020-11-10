@@ -11,6 +11,7 @@ const PhoneList = ({
   updatePhoneBook,
 }) => {
   const reducer = (obj, action) => {
+    console.log("Reducer");
     if (action.type === "CLEAR_FORM") return { name: "", number: "" };
     return {
       ...obj,
@@ -45,7 +46,7 @@ const PhoneList = ({
       return false;
     } else if (className === "update-ok") {
       alert("변경할래 ?!!?!?!");
-      updatePhoneBook(id, state.name, state.number);
+      updatePhoneBook(id, name, number);
       return false;
     }
     editPhoneBook(id);
@@ -54,6 +55,7 @@ const PhoneList = ({
   const phoneItems = phoneBooks.map((phone) => {
     console.log(phone.editable);
     if (phone.editable) {
+      console.log("map");
       state.name = phone.name;
       state.number = phone.number;
       return (
@@ -66,7 +68,7 @@ const PhoneList = ({
         >
           <td>
             <input
-              value={name}
+              value={state.name}
               name="name"
               className="update"
               onChange={onChange}
@@ -77,7 +79,7 @@ const PhoneList = ({
           </td>
           <td>
             <input
-              value={number}
+              value={state.number}
               name="number"
               className="update"
               onChange={onChange}
@@ -106,7 +108,7 @@ const PhoneList = ({
   });
 
   return (
-    <table class="phoneList">
+    <table className="phoneList">
       <thead>
         <tr>
           <th>이름</th>
