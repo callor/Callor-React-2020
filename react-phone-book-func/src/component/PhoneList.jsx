@@ -1,10 +1,16 @@
 import "../css/PhoneList.css";
 import React, { useReducer } from "react";
 
-const reducer = (obj, action) => {
+const reducer = (object, action) => {
+  // dispatch(reducer)가 여러번 호출될때
+  // 호출시점에 전달된 데이터는 action에 담기고
+  // 바로 직전에 전달된 데이터는 object에 담겨 있다
+  console.log("reducer", object, action);
   if (action.type === "CLEAR_FORM") return { name: "", number: "" };
+  else if (action.type === "EDIT_FORM")
+    return { name: action.name, number: action.number };
   return {
-    ...obj,
+    ...object,
     [action.name]: action.value,
   };
 };
@@ -35,9 +41,11 @@ const PhoneList = ({
   const trOnClick = (e) => {
     const className = e.target.className;
     const closest = e.target.closest("TR");
-    const data_name = closest.dataset.name;
+    const name = closest.childNodes[0].innerText; // closest.dataset.name;
+
+    const number = closest.dataset.number;
     const id = closest.dataset.id;
-    console.log(id, data_name);
+    console.log(id, name, number);
     if (className === "delete") {
       if (window.confirm("정말 삭제합니다!!!")) {
         deletePhoneBook(id);
@@ -45,29 +53,33 @@ const PhoneList = ({
       return false;
     } else if (className === "update-ok") {
       alert("변경할래 ?!!?!?!");
-      updatePhoneBook(id, name, number);
+      updatePhoneBook(id, state.name, state.number);
       return false;
     }
+    console.log("edit", name, number);
+    // reducer에서 다음 항목을 추출하여 state변수에 세팅
+    // type : action.type 으로 추출
+    // 데이터는 action.name, action.number로 추출
+    // dispatch로 여러번 데이터가 전달되면 이전 전달된 데이터는 object에 남아 있다
+    dispatch({ type: "EDIT_FORM", name: name, number: number });
     editPhoneBook(id);
   };
 
   const phoneItems = phoneBooks.map((phone) => {
-    console.log(phone.editable);
-    if (phone.editable) {
+    if (phone.isEdit) {
       console.log("map");
-      state.name = phone.name;
-      state.number = phone.number;
       return (
         <tr
           key={phone.id}
           onClick={trOnClick}
-          data-name={phone.name}
+          // data-name={phone.name}
+          // data-number={phone.number}
           data-id={phone.id}
           className="update"
         >
           <td>
             <input
-              value={state.name}
+              value={name}
               name="name"
               className="update"
               onChange={onChange}
@@ -78,7 +90,7 @@ const PhoneList = ({
           </td>
           <td>
             <input
-              value={state.number}
+              value={number}
               name="number"
               className="update"
               onChange={onChange}
@@ -96,6 +108,7 @@ const PhoneList = ({
           key={phone.id}
           onClick={trOnClick}
           data-name={phone.name}
+          data-number={phone.number}
           data-id={phone.id}
         >
           <td>{phone.name}</td>

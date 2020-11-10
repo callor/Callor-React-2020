@@ -16,7 +16,7 @@ const TodoMain = ({
   onChange,
   onKeyPress,
   onToggle,
-  onDelete
+  onDelete,
 }) => {
   return (
     <main className="todoTemplete">

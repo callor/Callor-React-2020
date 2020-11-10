@@ -5,16 +5,16 @@ import PhoneList from "./PhoneList";
 
 const PhoneMain = () => {
   const [phoneBooks, setPhoneBooks] = useState([
-    // { id: 0, name: "이몽룡", number: "010-111", editable: false },
-    // { id: 1, name: "성춘향", number: "010-222", editable: false },
-    // { id: 2, name: "홍길동", number: "010-333", editable: false },
+    // { id: 0, name: "이몽룡", number: "010-111", isEdit: false },
+    // { id: 1, name: "성춘향", number: "010-222", isEdit: false },
+    // { id: 2, name: "홍길동", number: "010-333", isEdit: false },
   ]);
-  const nextId = useRef(phoneBooks.length);
+  const nextId = useRef(phoneBooks && phoneBooks.length);
 
   const insertPhoneBook = (name, number) => {
     setPhoneBooks([
       ...phoneBooks,
-      { id: nextId.current++, name: name, number: number, editable: false },
+      { id: nextId.current++, name: name, number: number, isEdit: false },
     ]);
   };
 
@@ -31,9 +31,9 @@ const PhoneMain = () => {
   const editPhoneBook = (id) => {
     const editBooks = phoneBooks.map((phone) => {
       if (phone.id === Number(id)) {
-        return { ...phone, editable: true };
+        return { ...phone, isEdit: true };
       } else {
-        return { ...phone, editable: false };
+        return { ...phone, isEdit: false };
       }
     });
     setPhoneBooks(editBooks);
@@ -42,22 +42,23 @@ const PhoneMain = () => {
   const updatePhoneBook = (id, name, number) => {
     const updateBooks = phoneBooks.map((phone) => {
       if (phone.id === Number(id)) {
-        return { ...phone, name: name, number: number, editable: false };
+        return { ...phone, name: name, number: number, isEdit: false };
       } else {
-        return { ...phone, editable: false };
+        return { ...phone, isEdit: false };
       }
     });
     setPhoneBooks(updateBooks);
   };
 
   useEffect(() => {
+    console.log("Effect[]");
     const loadPhoneBooks = JSON.parse(window.localStorage.getItem("phoneBook"));
     nextId.current = loadPhoneBooks.length;
     setPhoneBooks(loadPhoneBooks);
   }, []);
 
   useEffect(() => {
-    console.log("phoneBooks");
+    console.log("Effect[phoneBooks]");
     window.localStorage.setItem("phoneBook", JSON.stringify(phoneBooks));
   }, [phoneBooks]);
 

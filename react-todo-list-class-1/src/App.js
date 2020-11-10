@@ -24,8 +24,8 @@ class App extends Component {
       { id: 1, text: "공모전 서류제출", checked: true },
       { id: 2, text: "리엑트 폼 작성", checked: false },
       { id: 3, text: "스프링 시큐리티", checked: false },
-      { id: 4, text: "Naver RestTemplete", checked: false }
-    ]
+      { id: 4, text: "Naver RestTemplete", checked: false },
+    ],
   };
 
   /*
@@ -37,9 +37,9 @@ class App extends Component {
 
   e.target.value : 키보드 입력을 캡춰하는 키보드 이벤트 메시지
   */
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      input: e.target.value
+      input: e.target.value,
     });
   };
 
@@ -51,7 +51,7 @@ class App extends Component {
   //    객체, 배열 등을 eq 연산을 하거나
   //    형변환이 되면 안되는 부분들에서
   // is 연산자와 비슷한 기능
-  handleKeyPress = e => {
+  handleKeyPress = (e) => {
     if (e.key === "Enter") {
       this.handleCreate();
     }
@@ -65,45 +65,49 @@ class App extends Component {
       todoList: todoList.concat({
         id: this.id++,
         text: input,
-        checked: false
-      })
+        checked: false,
+      }),
     });
   };
 
-  handleToggle = id => {
+  handleToggle = (id) => {
     // 여기부터
     const { todoList } = this.state;
 
     // id 매개변수 변수에 담겨 있는 값이
     // 객체 배열의 몇번째 위치 값이냐?
-    const index = todoList.findIndex(todo => todo.id === id);
+    // const index = todoList.findIndex(todo => todo.id === id);
 
     // 인덱스에 해당하는 요소를 추출
-    const selectTodo = todoList[index];
+    // const selectTodo = todoList[index];
 
     // 기존의 todoList를 nextTodoList에 복사해 두기
-    const nextTodoList = [...todoList];
+    // const nextTodoList = [...todoList];
 
     // 기존에 checke 값이 true -> false, false -> true
-    nextTodoList[index] = {
-      ...selectTodo,
-      checked: !selectTodo.checked
-    };
+    // nextTodoList[index] = {
+    // ...selectTodo,
+    // checked: !selectTodo.checked
+    // };
+    const nextTodoList = todoList.map((todo) => {
+      if (todo.id === id) return { ...todo, checked: !todo.checked };
+      else return todo;
+    });
 
     // 여기까지가 1개 아이템의 checked 값을 변경시키는 코드
 
     // 여기에 오면 비로소 render() 를 호출해서 화면에 반영을 한다.
     this.setState({
-      todoList: nextTodoList
+      todoList: nextTodoList,
     });
   };
 
   // 현재 클릭된(id가 선택된) 아이템만 남기고
   // 나머지 리스트만 추출하기
-  hadleDelete = id => {
+  hadleDelete = (id) => {
     const { todoList } = this.state;
     this.setState({
-      todoList: todoList.filter(todo => todo.id !== id)
+      todoList: todoList.filter((todo) => todo.id !== id),
     });
   };
 
@@ -112,7 +116,7 @@ class App extends Component {
   // 데이터나, 화면 디자인이 변경되면 호출되는 method
   render() {
     // 자식 컴포넌트에 데이터를 전달하기 위해서
-    // state로 선언된 데이터들을 props로 변환하기
+    // state로 선언된 데이터들을 구조 분해
     const { input, todoList } = this.state;
 
     // 현재 클래스에서 만든 method를 통째로
@@ -122,7 +126,7 @@ class App extends Component {
       handleChange,
       handleKeyPress,
       handleToggle,
-      hadleDelete
+      hadleDelete,
     } = this;
 
     return (
