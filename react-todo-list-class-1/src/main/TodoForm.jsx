@@ -1,21 +1,23 @@
-import React from "react";
-import "./TodoForm.css";
+import React, { Component } from "react";
+import "../css/TodoForm.css";
 
-const TodoForm = ({ value, onCreate, onChange, onKeyPress }) => {
-  return (
-    <div className="form">
-      <input
-        id="item"
-        value={value}
-        onChange={onChange}
-        onKeyPress={onKeyPress}
-      />
-
-      <div className="todo-insert" onClick={onCreate}>
-        추가
+class TodoForm extends Component {
+  render() {
+    const { value, onCreate, onChange, onKeyPress } = this.props;
+    return (
+      <div className="form">
+        <input
+          id="item"
+          value={value}
+          onChange={onChange}
+          onKeyPress={onKeyPress}
+        />
+        <div className="todo-insert" onClick={onCreate}>
+          추가
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default TodoForm;

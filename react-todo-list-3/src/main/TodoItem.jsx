@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../css/TodoItem.css";
+import "./TodoItem.css";
 
 class TodoItem extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -8,20 +8,17 @@ class TodoItem extends Component {
 
   render() {
     const { id, text, checked, onToggle, onDelete } = this.props;
-    const test = () => {};
-
     return (
       <div className="todo-item" onClick={() => onToggle(id)}>
         <div
           className="delete-item"
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             onDelete(id);
           }}
         >
           &times;
         </div>
-        <div onClick={`${checked ? { test } : ""}`} />
         <div className={`todo-text ${checked ? "checked" : ""}`}>{text}</div>
         {checked && <div className="check-mark">&#x2713;</div>}
       </div>
