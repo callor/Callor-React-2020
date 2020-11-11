@@ -61,7 +61,10 @@ const PhoneList = ({
     // type : action.type 으로 추출
     // 데이터는 action.name, action.number로 추출
     // dispatch로 여러번 데이터가 전달되면 이전 전달된 데이터는 object에 남아 있다
-    dispatch({ type: "EDIT_FORM", name: name, number: number });
+    if (className !== "update") {
+      dispatch({ type: "EDIT_FORM", name: name, number: number });
+    }
+
     editPhoneBook(id);
   };
 

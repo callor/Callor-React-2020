@@ -21,7 +21,7 @@ class TodoItem extends Component {
     return (
       <div className="todo-item" onClick={(e) => onClick(e, todo.id)}>
         <div className="delete-item">&times;</div>
-        <div className={`todo-text ${todo.isComplete ? "checked" : ""}`}>
+        <div className={`todo-text ${todo.isComplete && "checked"}`}>
           {todo.text}
         </div>
         {todo.isComplete && <div className="check-mark">&#x2713;</div>}
