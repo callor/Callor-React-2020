@@ -1,5 +1,6 @@
 div.form {
   display: flex;
+  padding: 12px;
 }
 
 div.form input {
@@ -7,15 +8,14 @@ div.form input {
   font-size: 1.25rem;
   outline: none;
   border: none;
-  border-bottom: 1px solid #c5f6fa;
+  border-bottom: 1px solid #ccc;
 }
 
 div.todo-insert {
-  /* top, bottom 0.5, left와 right 1rem */
   padding: 0.5rem 1rem;
   margin-left: 1rem;
-  background-color: #22b8cf;
-  border-radius: 3px;
+  background: #22b8cf;
+  border-radius: 5px;
   color: white;
   font-weight: 600;
   cursor: pointer;
