@@ -14,9 +14,9 @@ class BucketMain extends Component {
         b_title: "리액트 정복",
         b_end_date: "",
         b_end_check: false,
-        b_cancle: false
-      }
-    ]
+        b_cancle: true,
+      },
+    ],
   };
 
   // 17 이후는 사용불가
@@ -31,7 +31,7 @@ class BucketMain extends Component {
     if (strBucketList) {
       const jsonBucketList = JSON.parse(strBucketList);
       this.setState({
-        bucketList: jsonBucketList
+        bucketList: jsonBucketList,
       });
       this.id = jsonBucketList.length;
     }
@@ -50,23 +50,23 @@ class BucketMain extends Component {
     }
   }
 
-  changFlag = id => {
+  changFlag = (id) => {
     // const b_flage = ["☆", "★", "○", "●"];
     const b_flage = ["대충", "일반", "중요", "매우중요"];
     this.setState({
-      bucketList: this.state.bucketList.map(bucket => {
+      bucketList: this.state.bucketList.map((bucket) => {
         if (bucket.b_id === id) {
           let flag = ++bucket.b_flag % 4;
           let flagText = b_flage[flag];
           return {
             ...bucket,
             b_flag_text: flagText,
-            b_flag: flag
+            b_flag: flag,
           };
         } else {
           return bucket;
         }
-      })
+      }),
     });
   };
   /* 
@@ -85,7 +85,7 @@ class BucketMain extends Component {
     변경 : 기존객체 변경내용만 변경하여 새로운 객체에 복사
 
   */
-  bucket_add = b_title => {
+  bucket_add = (b_title) => {
     const { bucketList } = this.state;
 
     const date = new Date();
@@ -101,7 +101,7 @@ class BucketMain extends Component {
       b_title: b_title,
       b_end_date: "",
       b_end_check: false,
-      b_cancle: false
+      b_cancle: false,
     };
 
     this.setState({
@@ -109,7 +109,7 @@ class BucketMain extends Component {
       // 나머지 요소가 bucket에서 정의한 형태의 객체(vo)를 생성하여
       // 원본의 bucketList에 추가하여
       // 새로운 bucketList를 생성하라
-      bucketList: bucketList.concat({ ...bucket })
+      bucketList: bucketList.concat({ ...bucket }),
     });
   };
 
@@ -120,9 +120,9 @@ class BucketMain extends Component {
       // bucketList를 map 으로 반복 실행하면서
       // 각요소의 id값과 매개변수로 받은 id값이 일치하면
       // b_title만 새로운 값으로 변경하여 리턴하라
-      bucketList: bucketList.map(bucket =>
+      bucketList: bucketList.map((bucket) =>
         bucket.b_id === id ? { ...bucket, b_title: b_title } : bucket
-      )
+      ),
     });
   };
 
@@ -140,6 +140,16 @@ class BucketMain extends Component {
     return true;
   }
 
+  handleCancel = (id) => {
+    const cancelBucketList = this.state.bucketList.map((bucket) => {
+      if (bucket.b_id === Number(id)) {
+        return { ...bucket, b_cancle: !bucket.b_cancle };
+      } else {
+        return bucket;
+      }
+    });
+    this.setState({ bucketList: cancelBucketList });
+  };
   render() {
     return (
       <div>
@@ -148,6 +158,7 @@ class BucketMain extends Component {
           bucket_update={this.bucket_update}
           bucketList={this.state.bucketList}
           changFlag={this.changFlag}
+          handleCancel={this.handleCancel}
         />
       </div>
     );

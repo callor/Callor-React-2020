@@ -4,7 +4,7 @@ class BucketInsert extends Component {
   // input box를 사용하는 컴포넌트에서
   // 사용자가 입력한 문자열을 임시로 담고 있을 변수 선언
   state = {
-    bucket_title: ""
+    bucket_title: "",
   };
 
   /*
@@ -14,7 +14,7 @@ class BucketInsert extends Component {
   단, 여가에 문자열을 담는다 하여도
   다른 컴포넌트에 문자열이 전파되지는 않는다.
   */
-  handleOnChange = event => {
+  handleOnChange = (event) => {
     this.setState({
       // state 변수명을 직접 지정
       bucket_title: event.target.value,
@@ -24,7 +24,7 @@ class BucketInsert extends Component {
       // 현재 컴포넌트에 input box가 여러개 있을때
       // 한개의 onChange 이벤트 핸들러만 선언하여
       // 공통으로 사용하기 위한 방법
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -34,13 +34,13 @@ class BucketInsert extends Component {
   state.buckeet_title 변수값을 전달하여
   전체 컴포넌트가 바라보고 있는 배열에 추가하도록 수행하자
   */
-  handleOnKeyPress = ev => {
+  handleOnKeyPress = (ev) => {
     const { bucket_add } = this.props;
-    if (ev.key == "Enter") {
+    if (ev.key === "Enter") {
       // alert(this.state.bucket_title);
       bucket_add(this.state.bucket_title);
       this.setState({
-        bucket_title: ""
+        bucket_title: "",
       });
     }
   };

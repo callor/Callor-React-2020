@@ -14,7 +14,7 @@ class BucketItemView extends Component {
   };
 
   render() {
-    const { bucketItem } = this.props;
+    const { bucketItem, handleCancel } = this.props;
 
     return (
       <React.Fragment>
@@ -37,7 +37,14 @@ class BucketItemView extends Component {
           )}
         </td>
         <td>
-          <input type="checkbox" value={bucketItem.b_cancel} />
+          <input
+            type="checkbox"
+            defaultChecked={bucketItem.b_cancel}
+            value={bucketItem.b_cancel}
+            onChange={(e) => {
+              handleCancel(bucketItem.b_id);
+            }}
+          />
         </td>
       </React.Fragment>
     );

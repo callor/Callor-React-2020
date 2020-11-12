@@ -3,14 +3,15 @@ import BucketItem from "./BucketItem";
 
 class BucketList extends Component {
   render() {
-    const { bucketList } = this.props;
+    const { bucketList, handleCancel } = this.props;
 
-    const list = bucketList.map(bucket => (
+    const list = bucketList.map((bucket) => (
       <BucketItem
         key={bucket.b_id}
         bucket_update={this.props.bucket_update}
         bucketItem={bucket}
         changFlag={this.props.changFlag}
+        handleCancel={handleCancel}
       />
     ));
 
@@ -21,7 +22,7 @@ class BucketList extends Component {
     */
 
     // 기본 함수 코드
-    const f1 = function(arg1, arg2) {
+    const f1 = function (arg1, arg2) {
       return arg1 + arg2;
     };
     // 화살표함수 1

@@ -9,7 +9,7 @@ class BucketItem extends Component {
   };
 
   render() {
-    const { bucketItem } = this.props;
+    const { bucketItem, handleCancel } = this.props;
     return (
       <tr>
         {this.state.isEditing ? (
@@ -23,6 +23,7 @@ class BucketItem extends Component {
             bucketItem={bucketItem}
             onEditing={this.handleOnEditing}
             changFlag={this.props.changFlag}
+            handleCancel={handleCancel}
           />
         )}
       </tr>
