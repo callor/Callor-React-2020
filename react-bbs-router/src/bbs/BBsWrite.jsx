@@ -20,7 +20,7 @@ class bbsWrite extends React.Component {
     formData.append("bbsText", this.state.bbsText);
 
     axios
-      .post("http://localhost:8080/bbs/api/insert", formData)
+      .post("/bbs/api/insert", formData)
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   };

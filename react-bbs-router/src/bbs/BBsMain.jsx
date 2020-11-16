@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import BBsList from "./bbsList";
+import BBsList from "./BBsList";
 
 const BBS_FETCH_URL = "http://localhost:8080/bbs/api/json";
 

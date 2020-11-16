@@ -3,12 +3,12 @@ import axios from "axios";
 
 class BBsInsert extends Component {
   state = {
-    b_title: ""
+    b_title: "",
   };
 
   // 키보드로 입력박스에 문자를 입력하면
   // 그 문자를 b_title에 저장하라
-  handleChange = e => {
+  handleChange = (e) => {
     console.log(e.target.value);
     this.setState({ ...this.state, b_title: e.target.value });
     console.log("B_TITLE", this.state.b_title);
@@ -18,13 +18,13 @@ class BBsInsert extends Component {
     const { bbs_insert_url } = this.props;
     axios
       .post(bbs_insert_url, { b_title: this.state.b_title })
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
     return false;
   };
 
   // ajax이용하여 서버에 데이터를 보내기
-  bbsInsertSubmit = e => {
+  bbsInsertSubmit = (e) => {
     /*
     html 에서 a 태그나 submit 태그는 고유의 동작이 있다. 
     페이지를 이동시킨다거나 form 안에 있는 input 등을 전송한다던가 
@@ -44,16 +44,16 @@ class BBsInsert extends Component {
       mode: "cors", // no-cors, cors, *same-origin
       headers: {
         // Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ b_subject: this.state.b_title })
+      body: JSON.stringify({ b_subject: this.state.b_title }),
       // body: formData
     })
-      .then(response => {
+      .then((response) => {
         console.log(response.json());
         this.setState({ b_title: "" });
       })
-      .catch(e => alert(e));
+      .catch((err) => alert(err));
   };
 
   render() {

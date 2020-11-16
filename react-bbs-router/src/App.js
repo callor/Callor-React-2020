@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import BBsMain from "./bbs/bbsMain";
-import BBsWrite from "./bbs/bbsWrite";
+import BBsMain from "./bbs/BBsMain";
+import BBsWrite from "./bbs/BBsWrite";
 import MainNav from "./MainNav";
 
 function App() {

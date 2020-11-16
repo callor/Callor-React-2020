@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BBsItem from "./BBssItem";
+import BBsItem from "./BBsItem";
 
 class bbsList extends Component {
   render() {
