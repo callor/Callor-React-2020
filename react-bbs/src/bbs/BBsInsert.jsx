@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import moment from "moment";
 
 class BBsInsert extends Component {
   state = {
-    b_title: "",
+    b_subject: "",
+    b_writer: "",
+    b_content: "",
   };
 
   // 키보드로 입력박스에 문자를 입력하면
   // 그 문자를 b_title에 저장하라
   handleChange = (e) => {
     console.log(e.target.value);
-    this.setState({ ...this.state, b_title: e.target.value });
-    console.log("B_TITLE", this.state.b_title);
+    // this.setState({ ...this.state, b_title: e.target.value,b_writer });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   bbsAxiosSubmit = () => {
@@ -35,9 +38,16 @@ class BBsInsert extends Component {
     const { bbs_insert_url } = this.props;
 
     var formData = new FormData();
-    formData.append("b_subjec", this.state.b_title);
+    // formData.append("b_subjec", this.state.b_title);
+    // console.log("전송", this.state.b_title);
 
-    console.log("전송", this.state.b_title);
+    const bbsData = {
+      b_subject: this.state.b_subject,
+      b_writer: this.state.b_writer,
+      b_content: this.state.b_content,
+      b_date: moment().format("YYYY[-]MM[-]DD"),
+      b_time: moment().format("HH:mm:ss"),
+    };
 
     fetch(bbs_insert_url, {
       method: "POST",
@@ -46,12 +56,12 @@ class BBsInsert extends Component {
         // Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ b_subject: this.state.b_title }),
+      body: JSON.stringify(bbsData),
       // body: formData
     })
       .then((response) => {
         console.log(response.json());
-        this.setState({ b_title: "" });
+        this.setState({ b_subject: "", b_writer: "", b_content: "" });
       })
       .catch((err) => alert(err));
   };
@@ -63,13 +73,35 @@ class BBsInsert extends Component {
         onSubmit={this.bbsInsertSubmit}
         className="w3-container w3-row-padding"
       >
-        <div className="w3-col s9 w3-padding">
+        <div className="w3-col s2 w3-padding">
           <input
-            value={this.state.b_title}
+            name="b_writer"
+            value={this.state.b_name}
             onChange={this.handleChange}
             className="w3-input w3-border"
+            placeholder="작성자"
           />
         </div>
+
+        <div className="w3-col s3 w3-padding">
+          <input
+            name="b_subject"
+            value={this.state.b_subject}
+            onChange={this.handleChange}
+            className="w3-input w3-border"
+            placeholder="제목"
+          />
+        </div>
+        <div className="w3-col s3 w3-padding">
+          <input
+            name="b_content"
+            value={this.state.b_content}
+            onChange={this.handleChange}
+            className="w3-input w3-border"
+            placeholder="내용"
+          />
+        </div>
+
         <div className="w3-col s3 w3-padding">
           <button className="w3-button w3-blue">저장</button>
         </div>

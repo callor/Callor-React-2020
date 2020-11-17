@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-class bbsWrite extends React.Component {
+class BBsWrite extends React.Component {
   state = {
     bbsDate: "",
     bbsAuth: "",
@@ -88,4 +88,4 @@ class bbsWrite extends React.Component {
   }
 }
 
-export default bbsWrite;
+export default BBsWrite;

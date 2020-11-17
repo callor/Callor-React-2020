@@ -10,8 +10,8 @@ b_date : String
 b_date : String
 
 */
-const BBS_FETCH_URL = "http://localhost:5000/bbs/rest";
-const BBS_INSERT_URL = "http://localhost:5000/bbs/insert";
+const BBS_FETCH_URL = "/api/selectAll";
+const BBS_INSERT_URL = "/bbs/insert";
 
 class BBsMain extends Component {
   //   constructor(props) {
@@ -26,7 +26,7 @@ class BBsMain extends Component {
   timer = "";
   state = {
     isFetch: false,
-    bbsList: []
+    bbsList: [],
   };
 
   componentDidMount() {
@@ -53,19 +53,19 @@ class BBsMain extends Component {
     // ES6 js에 새로운 Ajax method가 있는데
     // 새로운 method를 사용해서 데이터를 조회해 오기
     fetch(BBS_FETCH_URL)
-      .then(response => {
+      .then((response) => {
         // (문자열형으로 리턴된) 가져온 데이터를
         // json type으로 변환하여 return
         // 다음의 then result 변수에 주입이된다.
         return response.json();
       })
-      .then(result => {
+      .then((result) => {
         this.setState({
           bbsList: result,
-          isFetch: false
+          isFetch: false,
         });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   };
   // shouldComponentUpdate(nextProps, nextState) {
 

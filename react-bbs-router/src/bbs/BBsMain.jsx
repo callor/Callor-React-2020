@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import BBsList from "./BBsList";
 
-const BBS_FETCH_URL = "http://localhost:8080/bbs/api/json";
+const BBS_FETCH_URL = "/bbs/api/json";
 
-class bbsMain extends Component {
+class BBsMain extends Component {
   state = {
     bbsList: [],
   };
@@ -66,6 +66,6 @@ class bbsMain extends Component {
   componentWillUnmount() {}
 }
 
-bbsMain.propTypes = {};
+BBsMain.propTypes = {};
 
-export default bbsMain;
+export default BBsMain;

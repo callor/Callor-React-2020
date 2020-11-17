@@ -28,8 +28,8 @@ const BBsList = ({ bbsList }) => {
   return (
     <table className="w3-table w3-table-all">
       <tr>
-        <th>날짜</th>
-        <th>시간</th>
+        <th>작성자</th>
+        <th>작성일자</th>
         <th>제목</th>
       </tr>
       {bbsMap}

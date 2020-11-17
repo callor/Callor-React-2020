@@ -8,7 +8,6 @@ List의 한줄(한요소)를 표현하는 구조로 생성
 class BBsItem extends Component {
   handleDetail = (seq) => {
     console.log(seq);
-
     this.props.history.push("/write/" + seq);
   };
 

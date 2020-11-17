@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class BBsListItem extends Component {
   state = {
-    editing: false
+    editing: false,
   };
   //    true -> false, false -> true
   handleToggleEdit = () => {
@@ -18,13 +18,13 @@ class BBsListItem extends Component {
       return (
         <tr key={key}>
           <td>
-            <input value={bbs.b_date} />
-          </td>
-          <td>
-            <input value={bbs.b_time} />
+            <input value={bbs.b_writer} />
           </td>
           <td>
             <input value={bbs.b_subject} />
+          </td>
+          <td>
+            <input value={bbs.b_text} />
           </td>
           <td>
             <button onClick={this.handleToggleEdit}>view</button>
@@ -35,8 +35,8 @@ class BBsListItem extends Component {
 
     return (
       <tr key={bbs._id}>
-        <td>{bbs.b_date}</td>
-        <td>{bbs.b_time}</td>
+        <td>{bbs.b_writer}</td>
+        <td>{bbs.b_date_time}</td>
         <td>{bbs.b_subject}</td>
         <td>
           <button onClick={this.handleToggleEdit}>view</button>

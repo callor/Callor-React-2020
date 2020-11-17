@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import BBsItem from "./BBsItem";
 
-class bbsList extends Component {
+class BBsList extends Component {
   render() {
     const { bbsList } = this.props;
     const bbsMap = bbsList.map((bbsVO) => {
@@ -21,4 +21,4 @@ class bbsList extends Component {
   }
 }
 
-export default bbsList;
+export default BBsList;
