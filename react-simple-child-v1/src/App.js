@@ -1,12 +1,11 @@
-import React from "react";
 import "./App.css";
-import ProMain from "./main/ProMain";
+import CompBody from "./component/CompBody";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ProMain />
+        <CompBody />
       </header>
     </div>
   );

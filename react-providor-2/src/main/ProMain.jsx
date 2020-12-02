@@ -1,35 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
+
 import ProList from "./ProList";
-import ProList2 from "./ProList2";
-import ProList_use from "./ProList_useContext";
-import Prosub2 from "./Prosub2";
-import ProMessageContext from "../providor/MessageProvidor";
+import ProSetMessage from "./ProMessage";
 
-class ProMain extends Component {
-  state = {
-    message: "전달!!!",
-    sendMessage: message => this.sendMessage(message)
+import MessageProvider from "../providor/MessageProvidor";
+import { useState } from "react";
+
+const ProMain = () => {
+  const [message, setMessage] = useState("전달");
+  const [isEdit, setEdit] = useState(false);
+  // Provider에 JSON객체 type으로 묶어서 전달할 것
+  const provData = {
+    message,setMessage,
+    isEdit,setEdit,
   };
 
-  sendMessage = message => {
-    this.setState({ message: message });
-  };
-
-  render() {
-    return (
-      <div>
-        <p>main에서 : {this.state.message}</p>
-        <ProMessageContext.Provider value={this.state}>
-          
-          <ProList />
-          <ProList2 />
-          <ProList_use />
-          <Prosub2 />
-          
-        </ProMessageContext.Provider>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <p>메인 : {message}</p>
+      <MessageProvider.Provider
+        // value={{ message, setMessage, isEdit, setEdit }} // 개별로 보내기
+        value={provData} // 묶음으로 보내기
+      >
+        <ProList />
+        <ProSetMessage />
+      </MessageProvider.Provider>
+    </div>
+  );
+};
 
 export default ProMain;

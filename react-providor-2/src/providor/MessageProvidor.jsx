@@ -1,9 +1,4 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { createContext } from "react";
 
-const MessageProvidor = React.createContext({
-  message: "",
-  sendMessage: message => {}
-});
-
+const MessageProvidor = createContext();
 export default MessageProvidor;

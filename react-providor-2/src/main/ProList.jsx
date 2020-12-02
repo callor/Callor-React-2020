@@ -1,19 +1,14 @@
-import React from "react";
-import ProMessageContext from "../providor/MessageProvidor"
+import React, { useContext } from "react";
+import MessageProvidor from "../providor/MessageProvidor";
 
 const ProList = () => {
-  
+  const { message } = useContext(MessageProvidor);
+
   return (
-    <ProMessageContext.Consumer>
-      {({ message }) => (
-        <div>
-          <p>List에서 수신 : { message} </p>
-          
-        </div>
-      )}
-      </ProMessageContext.Consumer>
+    <div>
+      <p>메인에서 List로 전달 : {message} </p>
+    </div>
   );
- 
 };
 
 export default ProList;
