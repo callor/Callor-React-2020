@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 class RCCP extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <h3>RCCP:React Class Component ProtoTypes</h3>
+      </div>
+    );
   }
 }
 

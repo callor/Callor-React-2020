@@ -21,7 +21,11 @@ class RCFC extends Component {
   componentWillUnmount() {}
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <h3>RCFC:React Class Component Width Method</h3>
+      </div>
+    );
   }
 }
 

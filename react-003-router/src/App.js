@@ -13,7 +13,7 @@ import Home from "./pages/Home";
 import BBs from "./pages/BBS";
 import BBsList from "./pages/BBsList";
 import Login from "./pages/Login";
-import MainNav from "./MainNav";
+import MainNav from "./pages/MainNav";
 
 /*
 Router
