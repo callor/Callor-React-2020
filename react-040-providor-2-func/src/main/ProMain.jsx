@@ -4,6 +4,7 @@ import ProList from "./ProList";
 import ProSetMessage from "./ProMessage";
 
 import MessageProvider from "../providor/MessageProvidor";
+import funcProvider from "../providor/MessageProvidor";
 import { useState } from "react";
 
 const ProMain = () => {
@@ -11,8 +12,10 @@ const ProMain = () => {
   const [isEdit, setEdit] = useState(false);
   // Provider에 JSON객체 type으로 묶어서 전달할 것
   const provData = {
-    message,setMessage,
-    isEdit,setEdit,
+    message,
+    setMessage,
+    isEdit,
+    setEdit,
   };
 
   return (
