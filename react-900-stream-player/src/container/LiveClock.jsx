@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import Clock from "react-live-clock";
 import { useInterval } from "../modules/userInterval";
-import InMemory from "../providor/InMemoryProvidor";
+import InMemory from "../provider/InMemoryProvider";
 
 function LiveClock(props) {
   const { jwtTimeOut, setJwtTimeOut } = useContext(InMemory);

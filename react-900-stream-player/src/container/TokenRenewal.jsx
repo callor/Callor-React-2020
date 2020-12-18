@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect } from "react";
-import InMemory from "../providor/InMemoryProvidor";
+import InMemory from "../provider/InMemoryProvider";
 
 /**
  * 만료시간이 있는 JWT(JSON Web Token)를
@@ -15,20 +15,20 @@ function TokenRenewal(props) {
   const toKenRenewalFetch = useCallback(() => {
     console.log("toKenRenewalFetch");
     fetch("./")
-      .then((result) => {})
+      .then((result) => {
+        const date = new Date();
+        setJwtToKen(date.toString());
+        setJwtTimeOut(SET_TIME_OUT);
+      })
       .catch((err) => console.log(err));
-  });
+  }, [SET_TIME_OUT, setJwtTimeOut, setJwtToKen]); // JS, React 오류는 아니지만 eslint (eslint-plugin-react-hooks) 경고를 없애기 위한 조치 ㅠ
 
   useEffect(() => {
     if (jwtTimeOut < 0) {
-      const date = new Date();
       console.log("ReNewal");
-
       toKenRenewalFetch();
-      setJwtToKen(date.toString());
-      setJwtTimeOut(SET_TIME_OUT);
     }
-  }, [jwtTimeOut]);
+  }, [jwtTimeOut, toKenRenewalFetch]);
   return <div>{jwtToken}</div>;
 }
 
