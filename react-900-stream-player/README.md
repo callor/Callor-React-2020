@@ -18,4 +18,4 @@ yarn add react-live-clock
 
 이렇게 컴포넌트를 분류하면, 데이터의 흐름이 간편해진답니다. 추가적으로 컴포넌트의 재사용률도 높여주죠.
 
-자세한 내용: [https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3b0dbutob]Smart and dumbcomponents
+자세한 내용: [Smart and dumbcomponents](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3b0dbutob)
