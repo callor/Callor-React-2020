@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import InMemory from "../provider/InMemoryProvider";
 
@@ -46,7 +45,6 @@ function MovieMain(props) {
             <LiveClock />
           </p>
         </header>
-        <MovieMain />
         <TokenRenewal />
       </InMemory.Provider>
     </div>
