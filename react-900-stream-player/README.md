@@ -1,9 +1,9 @@
 # dependcy
 
-yarn add moment
-yarn add moment-timezone
-yarn add react
-yarn add react-moment
+yarn add moment  
+yarn add moment-timezone  
+yarn add react  
+yarn add react-moment  
 yarn add react-live-clock
 
 # 멍청한 컴포넌트 똑똑한 컴포넌트
