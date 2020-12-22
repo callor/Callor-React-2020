@@ -1,13 +1,24 @@
 import "./App.css";
-//import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { MovieMain, MainNav } from "./component";
+import { Header, MovieMain, MainNav } from "./component";
 
 function App() {
   return (
-    <div className="App">
-      <MovieMain />
-    </div>
+    <>
+      <Header />
+      <Router>
+        <MainNav />
+        <Switch>
+          <Route path="/about">
+            <p>about</p>
+          </Route>
+          <Route exact path="/">
+            <MovieMain />
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 

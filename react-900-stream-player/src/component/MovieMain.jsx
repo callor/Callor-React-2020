@@ -39,12 +39,7 @@ function MovieMain(props) {
   return (
     <div>
       <InMemory.Provider value={providorValue}>
-        <header className="App-header">
-          <h1>Callor Media Streamming Player</h1>
-          <p>
-            <LiveClock />
-          </p>
-        </header>
+        <LiveClock />
         <TokenRenewal />
       </InMemory.Provider>
     </div>
