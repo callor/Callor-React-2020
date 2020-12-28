@@ -20,7 +20,7 @@ const spreadReducer = (state = counterInitialState, action) => {
     case actions.SET_DIFF:
       return {
         ...state,
-        diff: action.diff,
+        diff: action.counterApp.diff,
       };
     default:
       return state;
