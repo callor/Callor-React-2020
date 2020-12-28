@@ -1,6 +1,6 @@
-import objReducer from "./objReducer";
-import spreadReducer from "./spreadReducer";
 import { combineReducers } from "redux";
+import objReducer from "./objReducer";
+// import spreadReducer from "./spreadReducer";
 
 /**
  * combineRecucers 메소드는 여러개의 reducer을 하나로 합쳐주는 메소드.
@@ -19,7 +19,7 @@ import { combineReducers } from "redux";
  */
 const counterApp = combineReducers({
   counter: objReducer,
-  spreadReducer,
+  // spreadReducer,
 });
 
 export default counterApp;
