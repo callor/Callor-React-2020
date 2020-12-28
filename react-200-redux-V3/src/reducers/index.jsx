@@ -18,7 +18,7 @@ import objReducer from "./objReducer";
  * });
  */
 const counterApp = combineReducers({
-  counter: objReducer,
+  objReducer,
   // spreadReducer,
 });
 
