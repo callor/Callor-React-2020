@@ -2,18 +2,18 @@ import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../reducers";
 
-function Button(props) {
+function Button({ increment, decrement }) {
   const dispatch = useDispatch();
   const [localCount, setLocalCount] = useState(1);
 
   const onIncrement = useCallback(() => {
     setLocalCount(localCount + 1);
-    dispatch(actions.increment());
+    dispatch(increment());
   }, [localCount, dispatch]);
 
   const onDecrement = useCallback(() => {
     setLocalCount(localCount - 1);
-    dispatch(actions.decrement());
+    dispatch(decrement());
   }, [localCount, dispatch]);
 
   return (

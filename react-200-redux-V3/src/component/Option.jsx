@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { setDiff } from "../reducers";
+// import { setDiff } from "../reducers";
 import { useDispatch } from "react-redux";
 
-function Option(props) {
+function Option({ diff, setDiff }) {
   const dispatch = useDispatch();
   const onChange = useCallback(
     (event) => {
@@ -13,7 +13,7 @@ function Option(props) {
 
   return (
     <div>
-      <input value={props.diff} onChange={onChange} />
+      <input value={diff} onChange={onChange} />
     </div>
   );
 }
