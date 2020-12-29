@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export const INCREMENT = "counter/INCREMENT";
 export const DECREMENT = "counter/DECREMENT";
 export const SET_DIFF = "counter/SET_DIFF";

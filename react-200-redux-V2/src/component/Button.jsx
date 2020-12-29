@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 // import { increment, decrement } from "../actions";

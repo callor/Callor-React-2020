@@ -1,0 +1,6 @@
+{
+  "settings": {
+    "import/named": 2,
+    "import/ignore": "node_modules"
+  }
+}

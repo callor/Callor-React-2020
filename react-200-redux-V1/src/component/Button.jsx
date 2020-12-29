@@ -1,7 +1,7 @@
 import React from "react";
 import { increment, decrement } from "../actions";
 
-function Button(props) {
+const Button = () => {
   const onIncrement = (event) => {
     props.store.dispatch(increment());
   };
@@ -14,6 +14,6 @@ function Button(props) {
       <button onClick={onIncrement}>+</button> <button onClick={onDecrement}>-</button>
     </div>
   );
-}
+};
 
 export default Button;

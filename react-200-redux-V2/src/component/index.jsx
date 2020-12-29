@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Button from "./Button";
 import Counter from "./Counter";
 import Option from "./Option";

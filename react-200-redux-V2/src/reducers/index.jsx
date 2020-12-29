@@ -1,3 +1,4 @@
+/* eslint-disable */
 import objReducer from "./objReducer";
 import spreadReducer from "./spreadReducer";
 import { combineReducers } from "redux";

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useCallback } from "react";
 import { setDiff } from "../actions";
 import { useDispatch } from "react-redux";

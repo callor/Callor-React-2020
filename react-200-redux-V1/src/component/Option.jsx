@@ -1,3 +1,4 @@
+import { setDiff } from "../actions";
 import React from "react";
 
 function Option(props) {

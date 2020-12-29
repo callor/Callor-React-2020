@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { INCREMENT, DECREMENT, SET_DIFF } from "../actions";
 
 const counterInitialState = {
