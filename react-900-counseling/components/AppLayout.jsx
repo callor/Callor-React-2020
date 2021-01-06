@@ -8,23 +8,23 @@ const AppLayout = ({ children }) => {
       <Menu mode="horizontal">
         <Menu.Item key="home">
           <Link href="/">
-            <a>노드버드</a>
+            <a>Home</a>
           </Link>
         </Menu.Item>
-        <Menu.Item key="profile">
-          <Link href="/profile">
-            <a>프로필</a>
+        <Menu.Item key="student">
+          <Link href="/student">
+            <a>학생정보</a>
           </Link>
         </Menu.Item>
-        <Menu.Item key="mail">
+        <Menu.Item key="techer">
+          <Link href="/techer">
+            <a>교사용</a>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="search">
           <Input.Search enterButton style={{ verticalAlign: "middle" }} />
         </Menu.Item>
       </Menu>
-      <Link href="/Signup">
-        <a>
-          <Button>회원가입</Button>
-        </a>
-      </Link>
       {children}
     </div>
   );
