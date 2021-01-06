@@ -1,6 +1,4 @@
 import React, { useState, useCallback, memo } from "react";
-import Head from "next/head";
-import AppLayout from "../components/AppLayout";
 import { Form, Input, Button } from "antd";
 
 const TextInput = memo(({ value, onChange, name, type }) => {
