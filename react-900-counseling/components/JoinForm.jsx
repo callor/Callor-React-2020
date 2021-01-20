@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback, useEffect } from "react";
+import React, { useState, memo, useCallback } from "react";
 
 const TextInput = memo(({ value, onChange, name, type, className }) => {
   return <input type={type} name={name} value={value} required onChange={onChange} className={className} />;
@@ -43,6 +43,7 @@ const AuthForm = () => {
   );
 
   const onSubmit = async (event) => {
+    console.log(event);
     event.preventDefault();
     try {
       setAuthError({

@@ -5,6 +5,7 @@ const TextInput = memo(({ value, onChange, name, type }) => {
   return <Input type={type} name={name} value={value} required onChange={onChange} />;
 });
 const Signup = () => {
+  alert("Hello");
   const onSubmit = (e) => {
     e.preventDefault();
     console.log({
@@ -19,6 +20,7 @@ const Signup = () => {
   //반복되는 코드들을 Coustom Hook을 활용하여 줄여줄 수 있다.
   const useInput = (initValue = null) => {
     const [value, setter] = useState(initValue);
+    console.log(e.target.value);
     const handler = useCallback((e) => {
       setter(e.target.value);
     }, []);
