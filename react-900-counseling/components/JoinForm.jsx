@@ -1,4 +1,5 @@
 import React, { useState, memo, useCallback } from "react";
+import axios from "axios";
 
 const TextInput = memo(({ value, onChange, name, type, className }) => {
   return <input type={type} name={name} value={value} required onChange={onChange} className={className} />;
@@ -52,6 +53,30 @@ const AuthForm = () => {
         userName: !inputBox.userName ? "이름을 입력하세요" : "",
         phone: !inputBox.phone ? "휴대폰 번호를 입력하세요" : "",
       });
+      const body_data = {
+        st_curriculum: inputBox.curriculum,
+        st_name: inputBox.userName,
+        st_tel: inputBox.phone,
+        st_email: inputBox.email,
+      };
+
+      console.log(body_data);
+
+      /**
+       * axios를 사용하여 spring api post로 데이터 전송하기
+       * 두번째 파라메터를 null로 선언하고
+       * params객체에 json 데이터를 담아서 보낸다
+       *
+       * spring에서는 vo에 데이터를 받으면 된다.
+       */
+      axios
+        .post("https://api.callor.com/student/insert", null, { params: body_data })
+        .then((res) => {
+          if (res.data) {
+            alert(res.data.st_name + "님 환영합니다!!!");
+          }
+        })
+        .catch((error) => console.log(error));
     } catch (error) {
       alert(error.message);
       setAuthError(error.message);
@@ -75,7 +100,7 @@ const AuthForm = () => {
         <input name="userName" data-msg="이름은" type="text" placeholder="이름" value={inputBox.userName} onChange={onChangInputBox} className="authInput" />
         {authError.userName && <span className="authError">{authError.userName}</span>}
 
-        <input name="phone" data-msg="전화번호는" type="phone" placeholder="전화번호" value={inputBox.phone} onChange={onChangInputBox} className="authInput" />
+        <input name="phone" data-msg="전화번호는" type="phone" placeholder="010-1111-1111" value={inputBox.phone} onChange={onChangInputBox} className="authInput" />
         {authError.phone && <span className="authError">{authError.phone}</span>}
 
         <input type="submit" className="authInput authSubmit" value="등록하기" />
