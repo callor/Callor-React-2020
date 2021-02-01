@@ -53,6 +53,7 @@ const AuthForm = () => {
         userName: !inputBox.userName ? "이름을 입력하세요" : "",
         phone: !inputBox.phone ? "휴대폰 번호를 입력하세요" : "",
       });
+      if (inputBox.curriculum === "NONE") return false;
       const body_data = {
         st_curriculum: inputBox.curriculum,
         st_name: inputBox.userName,
