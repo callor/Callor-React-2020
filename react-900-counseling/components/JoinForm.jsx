@@ -90,6 +90,7 @@ const AuthForm = () => {
       <form onSubmit={onSubmit} className="container">
         <select name="curriculum" data-msg="훈련직종은" className="authInput" value={inputBox.curriculum} onChange={onChangInputBox} data-size="2">
           <option value="NONE">훈련직종선택</option>
+          <option value="응용SW3회차">응용SW엔지니어링 3회차</option>
           <option value="SpringMVC">SpringMVC</option>
           <option value="Java_Python">자바&파이썬</option>
         </select>
