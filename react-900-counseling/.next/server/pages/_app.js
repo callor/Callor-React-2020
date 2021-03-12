@@ -107,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
-var _jsxFileName = "C:\\Users\\callor\\Documents\\workspace\\React_Project\\react-2020\\react-900-counseling\\components\\AppLayout.jsx";
+var _jsxFileName = "C:\\Users\\callor\\Documents\\workspace\\Callor-React-2020\\react-900-counseling\\components\\AppLayout.jsx";
  // import Link from "next/link";
 // import { Menu, Input } from "antd";
 
@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _JoinForm_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_JoinForm_css__WEBPACK_IMPORTED_MODULE_4__);
 
 
-var _jsxFileName = "C:\\Users\\callor\\Documents\\workspace\\React_Project\\react-2020\\react-900-counseling\\pages\\_app.js";
+var _jsxFileName = "C:\\Users\\callor\\Documents\\workspace\\Callor-React-2020\\react-900-counseling\\pages\\_app.js";
 
 
 
