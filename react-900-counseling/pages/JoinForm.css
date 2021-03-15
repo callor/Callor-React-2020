@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   background-color: #6078ea;
+  color: yellowgreen;
 }
 
 form.container {
@@ -65,4 +66,10 @@ form.container {
   font-size: 15px;
   text-decoration: underline;
   font-weight: bolder;
+}
+
+.notice {
+  color: yellowgreen;
+  width: 70%;
+  margin: 10px auto;
 }

@@ -86,8 +86,16 @@ const AuthForm = () => {
 
   return (
     <div className="authContainer">
-      <h3>한국경영원 인재개발원</h3>
-      <p>반갑습니다</p>
+      <h2>한국경영원 인재개발원</h2>
+      <p className="notice">
+        이메일, 문자메시지, 카톡을 통하여 자료를
+        <br />
+        제공해 드리고 소통을 위한 카톡 단톡방 개설을 위하여 이메일과 휴대폰번호를 요청합니다
+        <br />
+        입력하신 정보는 보안서버에 등록되어 개인정보 유출을 하지 않으며
+        <br />
+        기타 다른 용도는 일체 사용하지 않습니다.
+      </p>
       <form onSubmit={onSubmit} className="container">
         <select name="curriculum" data-msg="훈련직종은" className="authInput" value={inputBox.curriculum} onChange={onChangInputBox} data-size="2">
           <option value="NONE">훈련직종선택</option>
