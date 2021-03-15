@@ -87,6 +87,12 @@ const AuthForm = () => {
   return (
     <div className="authContainer">
       <h3>한국경영원 인재개발원</h3>
+      <div>
+        <p>한국경영원 인재개발원 국가기간 산업직종 훈련과정에 입소하신 여러분 환영합니다</p>
+        <p>훈련과정중 여러분과 소통을 위하여 연락처와 E-mail 주소를 부탁합니다</p>
+        <p>자료제공, 단체카톡 초대, 출결 확인 등의 용도로 사용합니다</p>
+      </div>
+
       <form onSubmit={onSubmit} className="container">
         <select name="curriculum" data-msg="훈련직종은" className="authInput" value={inputBox.curriculum} onChange={onChangInputBox} data-size="2">
           <option value="NONE">훈련직종선택</option>
