@@ -8,7 +8,12 @@
 
 npm install -g nextjs
 npm install -g next
+
 yarn add react
 yarn add react-dom
+yarn build
+yarn start
+
+또는
 npm run build
 npm start
