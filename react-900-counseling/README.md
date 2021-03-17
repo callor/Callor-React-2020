@@ -10,5 +10,5 @@ npm install -g nextjs
 npm install -g next
 yarn add react
 yarn add react-dom
-next build
-next start
+npm run build
+npm start
