@@ -22,6 +22,10 @@ table.remember_list tbody tr:hover {
     background-color: #ccc;
 }
 
+tr.complete {
+    text-decoration-line: line-through;
+}
+
 input[name="r_remember"] {
     width: 100%;
     height: 100%;

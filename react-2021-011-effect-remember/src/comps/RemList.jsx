@@ -1,55 +1,77 @@
 import React from "react";
-import { useState } from "react";
-import "../../css/list.css";
+import { useState, useEffect } from "react";
+import "../css/list.css";
 import moment from "moment";
 import uuid from "react-uuid";
 
-/**
- * Write = ( {bbs} ) =>{}
- * 매개변수로 전달받은 변수(들)중에서 나는 bbs만 받겠다
- *
- * App.js에서 전달받은 상태(bbsVO를 bbs로 받음)는
- * 전달받아서 매개변수로 부터 추출하는 순간 상태의 기능을 상실한다
- * 고정된(Read Only)형태의 props(properties)가 되어버린다
- * props가 된 변수 객체는 보여주는(UI)용도로는 사용할수 있지만
- * 값을 변경하는 것은 불가능해진다.
- * 값을 변경하려고 시도를 하면 오류가 발생한다
- *
- * 상태(변수, 객체)는 반드시 선언된 컴포넌트에서만 변경이 가능하다
- * 입력은 Write.js에서 실행하지만 입력된 데이터를 전파하기 위해서는
- * App.js에게 상태를 변경해 달라고 요청을 해야한다.
- *
- * 이러한 기능을 해결하기 위해서는
- * App.js 에 상태를 변경하는 함수를 선언하고
- * 그 함수를 다시 하위(Write.js)컴포넌트에게 전달하여
- * 대리 실행하도록 코드를 작성해야 한다.
- *
- * Write = ( {bbs, onBBsChange}) 코드는
- *
- * Write = ( props ) =>{
- * 	const {bbs,onBBsChange} = props
- * }
- * 코드를 한번에 처리한 것이다
- *
- *
- */
-
 const theader = ["작성일자", "작성시각", "제목"];
-
 const tableHeader = theader.map((title, index) => {
     return <th>{title}</th>;
 });
 
 const RemList = () => {
     const rememberSample = {
-        r_id: 0,
+        r_id: "0001",
         r_date: moment().format("YYYY[-]MM[-]DD"),
         r_time: moment().format("HH:mm:ss"),
         r_remember: "나의 리맴버리스트",
         r_destroy: false,
     };
+
     const [remember, setRemember] = useState("");
     const [rememberList, setRememberList] = useState([rememberSample]);
+
+    // 시작할때 localStorage에서 Loading하기
+    useEffect(() => {
+        // effect
+        const loadStringData = localStorage.rememberList;
+        if (loadStringData) {
+            console.log("Loading");
+
+            const loadData = JSON.parse(loadStringData);
+            loadData.sort((pre, next) => {
+                console.log(pre.r_destroy, pre.r_remember);
+                if (pre["r_destroy"] === true) {
+                    console.log("pre is true");
+                }
+                return pre.r_destroy
+                    ? 1
+                    : pre.r_date > next.r_date && pre.r_time > next.r_time
+                    ? -1
+                    : 1;
+            });
+            setRememberList(loadData);
+        }
+    }, []);
+    // 데이터에 변화가 생기면 localStorage에 저장하기
+    useEffect(() => {
+        // console.table(rememberList);
+        localStorage.rememberList = JSON.stringify(rememberList);
+    }, [rememberList]);
+
+    const rememberComplete = (uuid) => {
+        // 데이터 삭제하기
+        /*
+        const _rememberList = rememberList.filter(
+            (remember) => remember.r_id !== uuid
+        );
+        setRememberList([..._rememberList]);
+		*/
+        let _rememberList = rememberList.map((remember) => {
+            if (remember.r_id === uuid) {
+                return { ...remember, r_destroy: !remember.r_destroy };
+            }
+            return remember;
+        });
+        _rememberList.sort((pre, next) => {
+            return pre.r_destroy
+                ? 1
+                : pre.r_date > next.r_date && pre.r_time > next.r_time
+                ? 1
+                : -1;
+        });
+        setRememberList([..._rememberList]);
+    };
     const tableBody = rememberList.map((remember, index) => {
         return (
             <tr
@@ -58,7 +80,10 @@ const RemList = () => {
                     // console.log(e.target.closest("TR").dataset.uuid);
                     // alert(e.target.closest("TR").dataset.uuid);
                     alert(e.target.closest("TR").dataset.uuid);
+                    const uuid = e.target.closest("TR").dataset.uuid;
+                    rememberComplete(uuid);
                 }}
+                className={remember.r_destroy ? "complete" : ""}
             >
                 <td>{remember.r_date}</td>
                 <td>{remember.r_time}</td>
@@ -79,7 +104,7 @@ const RemList = () => {
                     r_destroy: false,
                 })
             );
-            console.table(rememberList);
+            // console.table(rememberList);
             e.target.value = "";
         }
     };

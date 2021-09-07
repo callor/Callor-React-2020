@@ -6,7 +6,7 @@ import "./css/write.css";
 import MainNav from "./comps/MainNav";
 import Home from "./comps/Home";
 import About from "./comps/About";
-import Remember from "./comps/remember/RemList";
+import Remember from "./comps/RemList";
 
 function App() {
     // const insertRemember = useCallback(async () => {
