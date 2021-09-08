@@ -65,6 +65,10 @@ ul.main_menu a {
     padding: 1rem;
 }
 
+.activeNavStyle {
+    background-color: rgba(0, 125, 125, 0.7);
+}
+
 input[name="search"] {
     outline: 0;
     border: none;

@@ -5,17 +5,17 @@ function MainNav() {
     return (
         <ul className="main_menu">
             <li>
-                <NavLink to="/" exact>
+                <NavLink to="/" activeClassName="activeNavStyle" exact>
                     Home
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/about" exact>
+                <NavLink to="/about" exact activeClassName="activeNavStyle">
                     나에 대하여
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/remember" exact>
+                <NavLink to="/remember" exact activeClassName="activeNavStyle">
                     리맴버리스트
                 </NavLink>
             </li>

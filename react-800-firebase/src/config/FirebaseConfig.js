@@ -1,13 +1,13 @@
 import firebase from "firebase";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDmrSP2HPlykkF46YqJuN6VgcBOs5HL3b0",
-  authDomain: "react-firebase-c028a.firebaseapp.com",
-  databaseURL: "https://react-firebase-c028a.firebaseio.com",
-  projectId: "react-firebase-c028a",
-  storageBucket: "react-firebase-c028a.appspot.com",
-  messagingSenderId: "393994014705",
-  appId: "1:393994014705:web:97436688f11fc3fb39be50",
+    apiKey: "AIzaSyDmrSP2HPlykkF46YqJuN6VgcBOs5HL3b0",
+    authDomain: "react-firebase-c028a.firebaseapp.com",
+    databaseURL: "https://react-firebase-c028a.firebaseio.com",
+    projectId: "react-firebase-c028a",
+    storageBucket: "react-firebase-c028a.appspot.com",
+    messagingSenderId: "393994014705",
+    appId: "1:393994014705:web:97436688f11fc3fb39be50",
 };
 
 /*
@@ -22,6 +22,6 @@ firebase.initializeApp() method가 여러번 실행되어
 없으면(!firebase.apps.length) 새로 생성하도록 코드를 변경
 */
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
 }
 export const database = firebase.database();
