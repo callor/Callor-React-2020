@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "../css/BBs.css";
 import { firestore } from "../config/BBSConfig";
+import { useHistory } from "react-router-dom";
 
 function BBsMain() {
+    const history = useHistory();
     const [bbsData, setBBsData] = useState([]);
-    const firebaseFetch = async () => {
-        const result = await firestore.collection("bbs").get();
+    const firebaseFetch = useCallback(async () => {
+        const result = await firestore
+            .collection("bbs")
+            .orderBy("b_date", "desc")
+            .orderBy("b_time", "desc")
+            .get();
+
         const r = result.docs.map((doc) => {
-            return doc.data();
-            console.log(doc.id);
-            // setBBsData([...bbsData, doc.data()]);
+            console.log(doc.id, doc.data().b_date);
+            return { ...doc.data(), id: doc.id };
         });
         setBBsData(r);
-    };
+    });
     useEffect(firebaseFetch, []);
 
     return (
@@ -28,10 +34,21 @@ function BBsMain() {
             <tbody>
                 {bbsData.map((bbs) => {
                     return (
-                        <tr key={bbs.id}>
+                        <tr
+                            key={bbs.id}
+                            data-id={bbs.id}
+                            onClick={(e) => {
+                                alert(e.target.closest("TR").dataset.id);
+                                history.push(
+                                    `/write/${
+                                        e.target.closest("TR").dataset.id
+                                    }`
+                                );
+                            }}
+                        >
                             <td>{bbs.b_date}</td>
                             <td>{bbs.b_time}</td>
-                            <td>{bbs.b_write}</td>
+                            <td>{bbs.b_writer}</td>
                             <td>{bbs.b_subject}</td>
                         </tr>
                     );
