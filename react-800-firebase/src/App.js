@@ -31,8 +31,9 @@ function App() {
             </header>
             <Router>
                 <MainMenu />
-                <Route exact path="/" component={BBsMain} />
                 <Switch>
+                    <Route exact path="/" component={BBsMain} />
+
                     <Route path="/bbsWrite/:seq" component={BBsWrite} />
                     <Route path="/bbsWrite/" component={BBsWrite} />
                 </Switch>
