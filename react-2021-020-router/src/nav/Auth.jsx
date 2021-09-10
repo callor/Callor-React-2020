@@ -24,39 +24,6 @@ import {
 // and you'll see you go back to the page you visited
 // just *before* logging in, the public page.
 
-export default function Auth() {
-    return (
-        <ProvideAuth>
-            <Router>
-                <div>
-                    <AuthButton />
-
-                    <ul>
-                        <li>
-                            <Link to="/public">Public Page</Link>
-                        </li>
-                        <li>
-                            <Link to="/protected">Protected Page</Link>
-                        </li>
-                    </ul>
-
-                    <Switch>
-                        <Route path="/public">
-                            <PublicPage />
-                        </Route>
-                        <Route path="/login">
-                            <LoginPage />
-                        </Route>
-                        <PrivateRoute path="/protected">
-                            <ProtectedPage />
-                        </PrivateRoute>
-                    </Switch>
-                </div>
-            </Router>
-        </ProvideAuth>
-    );
-}
-
 const fakeAuth = {
     isAuthenticated: false,
     signin(cb) {
@@ -176,5 +143,38 @@ function LoginPage() {
             <p>You must log in to view the page at {from.pathname}</p>
             <button onClick={login}>Log in</button>
         </div>
+    );
+}
+
+export default function Auth() {
+    return (
+        <ProvideAuth>
+            <Router>
+                <div>
+                    <AuthButton />
+
+                    <ul>
+                        <li>
+                            <Link to="/public">Public Page</Link>
+                        </li>
+                        <li>
+                            <Link to="/protected">Protected Page</Link>
+                        </li>
+                    </ul>
+
+                    <Switch>
+                        <Route path="/public">
+                            <PublicPage />
+                        </Route>
+                        <Route path="/login">
+                            <LoginPage />
+                        </Route>
+                        <PrivateRoute path="/protected">
+                            <ProtectedPage />
+                        </PrivateRoute>
+                    </Switch>
+                </div>
+            </Router>
+        </ProvideAuth>
     );
 }
