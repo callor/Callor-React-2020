@@ -16,6 +16,8 @@
 -   9.x 버전에 문제가 있어서 8.10.0 버전을 설치할 것이다
 -   yarn add firebase@8.10.0 / npm install firebase@8.10.0
 -   날짜와 시간 설정을 위한 moment 설치 : yarn add moment
+-   CRUD 구현
+-   회원가입, 로그인 구현
 
 ## firebase 호스팅 배포
 

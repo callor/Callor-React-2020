@@ -20,6 +20,8 @@ function BBsWrite() {
         b_writer: "",
         b_subject: "",
         b_content: "",
+        b_date: "",
+        b_time: "",
     });
 
     const firebaseFindById = useCallback(async () => {
@@ -29,11 +31,11 @@ function BBsWrite() {
             console.log(result.data());
             setBBs(result.data());
         }
-    });
+    }, [docId]);
 
     useEffect(() => {
         firebaseFindById();
-    }, []);
+    }, [firebaseFindById]);
 
     // onChange Event 핸들러
     // 키보드로 입력한 데이터를 bbs 객체에 setting 하는 일을 수행한다
@@ -51,8 +53,8 @@ function BBsWrite() {
         // b_date, b_time 칼럼을 추가하겠다
         const saveBBS = {
             ...bbs,
-            b_date: moment().format("YYYY[-]MM[-]DD"),
-            b_time: moment().format("HH:mm:ss"),
+            b_date: bbs.b_date || moment().format("YYYY[-]MM[-]DD"),
+            b_time: bbs.b_time || moment().format("HH:mm:ss"),
         };
 
         /**

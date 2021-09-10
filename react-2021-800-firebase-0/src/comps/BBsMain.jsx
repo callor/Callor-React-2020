@@ -18,8 +18,8 @@ function BBsMain() {
             return { ...doc.data(), id: doc.id };
         });
         setBBsData(r);
-    });
-    useEffect(firebaseFetch, []);
+    }, []);
+    useEffect(firebaseFetch, [firebaseFetch]);
 
     return (
         <table className="bbs_list">
@@ -38,12 +38,9 @@ function BBsMain() {
                             key={bbs.id}
                             data-id={bbs.id}
                             onClick={(e) => {
-                                alert(e.target.closest("TR").dataset.id);
-                                history.push(
-                                    `/write/${
-                                        e.target.closest("TR").dataset.id
-                                    }`
-                                );
+                                const id = e.target.closest("TR").dataset.id;
+                                // alert(e.target.closest("TR").dataset.id);
+                                history.push(`/detail/${id}`);
                             }}
                         >
                             <td>{bbs.b_date}</td>
