@@ -1,14 +1,13 @@
 import firebase from "firebase";
 
 var firebaseConfig = {
-    apiKey: "AIzaSyBKYoow5ahcITrSc7Gta94sJ-ROO70yWwE",
-    authDomain: "hello-android-6a9e0.firebaseapp.com",
-    databaseURL: "https://hello-android-6a9e0-default-rtdb.firebaseio.com",
-    projectId: "hello-android-6a9e0",
-    storageBucket: "hello-android-6a9e0.appspot.com",
-    messagingSenderId: "149905565705",
-    appId: "1:149905565705:web:efd2c406fa4afe169330d8",
-    measurementId: "G-490J6TXSWG",
+    apiKey: "AIzaSyAfGVEFTFVqgQ77WhIOtVmyUpaD8YamKRA",
+    authDomain: "firenode-dc45c.firebaseapp.com",
+    databaseURL: "https://firenode-dc45c.firebaseio.com",
+    projectId: "firenode-dc45c",
+    storageBucket: "firenode-dc45c.appspot.com",
+    messagingSenderId: "275860417400",
+    appId: "1:275860417400:web:5641965f490decb00c768d",
 };
 
 /*
@@ -27,5 +26,6 @@ if (!firebase.apps.length) {
 }
 const realDB = firebase.database();
 const firestore = firebase.firestore();
+const firebaseAuth = firebase.auth();
 
-export { realDB, firestore };
+export { realDB, firestore, firebaseAuth };

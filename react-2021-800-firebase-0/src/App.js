@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
     BBsMain,
@@ -7,6 +8,7 @@ import {
     Footer,
     Header,
     MainNav,
+    GoogleLogin,
 } from "./comps";
 import BBsWrite from "./comps/BBsWrite";
 
@@ -24,7 +26,9 @@ function App() {
                         <Route exact path="/detail/:id" component={BBsDetail} />
                         <Route exact path="/delete/:id" component={BBsDelete} />
                     </Switch>
+                    <Route exact path="/login" component={GoogleLogin} />
                 </section>
+
                 <Footer />
             </div>
         </Router>

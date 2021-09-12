@@ -26,3 +26,14 @@
 -   firebase login
 -   firebase init hostring
 -   firebase deploy --only hosting
+
+## firebase Auth
+
+npm install --save firebase react-with-firebase-auth
+
+## App.js
+
+import withFirebaseAuth from 'react-with-firebase-auth'
+import \* as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from './firebaseConfig';

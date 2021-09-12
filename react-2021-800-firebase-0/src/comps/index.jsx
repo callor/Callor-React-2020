@@ -6,3 +6,4 @@ export { default as Footer } from "./Footer";
 export { default as BBsWrite } from "./BBsMain";
 export { default as BBsDetail } from "./BBsDetail";
 export { default as BBsDelete } from "./BBsDelete";
+export { default as GoogleLogin } from "./GoogleLogin";
