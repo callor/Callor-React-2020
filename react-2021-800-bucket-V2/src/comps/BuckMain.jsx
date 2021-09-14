@@ -41,6 +41,18 @@ function BuckMain() {
         setBuckList(_bucketList);
     };
 
+    const bucket_edit = (id, column) => {
+        const _bucketList = bucketList.map((bucket) => {
+            if (bucket.b_id === id) {
+                return { ...bucket, [column]: !bucket[column] };
+            } else {
+                return bucket;
+            }
+        });
+        // 원래의 list를 새로운 list로 바꾸기
+        setBuckList(_bucketList);
+    };
+
     // 리스트에서 input box에 버킷을 변경한 후 Enter를 누르면
     // 실행할 함수
     const bucket_update = (id, title) => {
@@ -74,6 +86,7 @@ function BuckMain() {
         flag_change: flag_change,
         bucket_update: bucket_update,
         bucket_complet: bucket_complet,
+        bucket_edit,
     };
 
     return (
