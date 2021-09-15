@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import BuckList from "./BuckList";
 import BuckInput from "./BuckInput";
 import uuid from "react-uuid";
@@ -8,7 +8,19 @@ function BuckMain() {
     // 버킷리스트를 담을 배열
     const [bucketList, setBuckList] = useState([]);
 
-    const buck_insert = (bucket_text) => {
+    // db에 update할 state
+    const [updateBucket, setUpdateBucket] = useState({});
+
+    const bucketFetch = useCallback(async () => {
+        const res = await fetch("http://localhost:5000/api/get");
+        const bucketList = await res.json();
+        console.log("BUCKET");
+        // console.log(bucket);
+        await setBuckList(bucketList);
+    }, []);
+    useEffect(bucketFetch, [bucketFetch]);
+
+    const buck_insert = async (bucket_text) => {
         const bucket = {
             b_id: uuid(),
             b_start_date: moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
@@ -20,31 +32,44 @@ function BuckMain() {
         };
         // 원래있던 bucketList에 새로운 bucket을 추가하기
         setBuckList([...bucketList, bucket]);
+        const fetch_option = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bucket),
+        };
+        try {
+            await fetch("http://localhost:5000/api/bucket", fetch_option);
+            // await bucketFetch();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    // 리스트에서 FLAG항목을 클릭하면 실행할 함수
-    const flag_change = (id) => {
-        const _bucketList = bucketList.map((bucket) => {
-            /**
-             * 전달받은 id와 같은 항목의 flag를 1 증가시키기
-             */
-            if (bucket.b_id === id) {
-                return {
-                    ...bucket,
-                    b_flag: bucket.b_flag + 1,
-                };
-            } else {
-                return bucket;
-            }
-        });
-        // 원래의 bucketList를 _bucketList로 바꾸기
-        setBuckList(_bucketList);
+    const putBucket = async () => {
+        console.log(updateBucket);
+        const putFetchOption = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updateBucket),
+        };
+        const result = await fetch(
+            "http://localhost:5000/api/bucket",
+            putFetchOption
+        );
+        console.log(result.json());
     };
+    useEffect(putBucket, [updateBucket]);
 
-    const bucket_edit = (id, column) => {
+    const bucket_toggle = (id, column) => {
         const _bucketList = bucketList.map((bucket) => {
             if (bucket.b_id === id) {
-                return { ...bucket, [column]: !bucket[column] };
+                const _temp = { ...bucket, [column]: !bucket[column] };
+                setUpdateBucket(_temp);
+                return _temp;
             } else {
                 return bucket;
             }
@@ -53,12 +78,12 @@ function BuckMain() {
         setBuckList(_bucketList);
     };
 
-    // 리스트에서 input box에 버킷을 변경한 후 Enter를 누르면
-    // 실행할 함수
-    const bucket_update = (id, title) => {
+    const bucket_edit = (id, column, value) => {
         const _bucketList = bucketList.map((bucket) => {
             if (bucket.b_id === id) {
-                return { ...bucket, b_title: title };
+                const _temp = { ...bucket, [column]: value };
+                setUpdateBucket(_temp);
+                return _temp;
             } else {
                 return bucket;
             }
@@ -68,25 +93,26 @@ function BuckMain() {
     };
 
     const bucket_complet = (id) => {
-        bucketList.map((bucket) => {
+        const _bucketList = bucketList.map((bucket) => {
             if (bucket.b_id === id) {
                 return {
                     ...bucket,
-                    b_end_date: moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
-                    b_end_check: true,
+                    b_end_date: moment().format("YYYY-MM-DD HH:mm:ss"),
+                    b_end_check: !bucket.b_end_check,
                 };
             } else {
                 return bucket;
             }
         });
+        // 원래의 list를 새로운 list로 바꾸기
+        setBuckList(_bucketList);
     };
 
     const args = {
         bucketList: bucketList,
-        flag_change: flag_change,
-        bucket_update: bucket_update,
-        bucket_complet: bucket_complet,
         bucket_edit,
+        bucket_toggle,
+        bucket_complet,
     };
 
     return (

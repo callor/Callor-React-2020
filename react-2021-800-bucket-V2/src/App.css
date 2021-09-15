@@ -46,6 +46,11 @@ td {
     cursor: pointer;
 }
 
+tr.cancel {
+    text-decoration-line: line-through;
+    color: red;
+}
+
 footer {
     background-color: #ddd;
     text-align: center;
