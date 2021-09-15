@@ -7,7 +7,7 @@
 -   시작하기 전에 간단한 알림으로, 여기에 컨텍스트의 바닐라 후크 기반 구현이 있다.  
     (다양한 패턴의 예로 사용할 것입니다).
 
-        import React, { useContext, createContext, useState, useEffect } from 'react';
+    import React, { useContext, createContext, useState, useEffect } from 'react';
 
     // create context
     const UserContext = createContext();
