@@ -9,47 +9,47 @@
 
         import React, { useContext, createContext, useState, useEffect } from 'react';
 
-// create context
-const UserContext = createContext();
+    // create context
+    const UserContext = createContext();
 
-const App = () => {
-// the value that will be given to the context
-const [user, setUser] = useState(null);
+    const App = () => {
+    // the value that will be given to the context
+    const [user, setUser] = useState(null);
 
-// fetch a user from a fake backend API
-useEffect(() => {
-const fetchUser = () => {
-// this would usually be your own backend, or localStorage
-// for example
-fetch('https://randomuser.me/api/')
-.then((response) => response.json())
-.then((result) => setUser(result.results[0]))
-.catch((error) => console.log('An error occurred');
-};
+    // fetch a user from a fake backend API
+    useEffect(() => {
+    const fetchUser = () => {
+    // this would usually be your own backend, or localStorage
+    // for example
+    fetch('https://randomuser.me/api/')
+    .then((response) => response.json())
+    .then((result) => setUser(result.results[0]))
+    .catch((error) => console.log('An error occurred');
+    };
 
-    fetchUser();
+        fetchUser();
 
-}, []);
+    }, []);
 
-return (
-// the Provider gives access to the context to its children
-<UserContext.Provider value={user}>
-<Page />
-</UserContext.Provider>
-);
-};
+    return (
+    // the Provider gives access to the context to its children
+    <UserContext.Provider value={user}>
+    <Page />
+    </UserContext.Provider>
+    );
+    };
 
-const Page = () => {
-// access the context value
-const user = useContext(UserContext);
+    const Page = () => {
+    // access the context value
+    const user = useContext(UserContext);
 
-if (user?.login?.username) {
-return <p>You are logged in as {user?.login.username}</p>;
-} else {
-return <p>You are not logged in</p>;
-}
-};
+    if (user?.login?.username) {
+    return <p>You are logged in as {user?.login.username}</p>;
+    } else {
+    return <p>You are not logged in</p>;
+    }
+    };
 
-export default App;
+    export default App;
 
 위의 코드에서 내가 마음에 들지 않는 한 가지는 서로 관련이 거의 없을 때 컨텍스트 논리가 앱 코드와 혼합되어 있다는 것입니다. 앱은 자식에게만 컨텍스트를 제공하기를 원하며 이 컨텍스트가 어떻게 만들어지는지는 신경 쓰지 않습니다.
