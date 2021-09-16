@@ -1,37 +1,18 @@
-import React, { useContext, createContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 
-// create context
-const UserContext = createContext();
+import { UserContext, UserContextProvider } from "../context/UserContext";
 
 const App = () => {
-    // the value that will be given to the context
-    const [user, setUser] = useState(null);
-
-    // fetch a user from a fake backend API
-    useEffect(() => {
-        const fetchUser = () => {
-            // this would usually be your own backend, or localStorage
-            // for example
-            fetch("https://randomuser.me/api/")
-                .then((response) => response.json())
-                .then((result) => setUser(result.results[0]))
-                .catch((error) => console.log("An error occurred"));
-        };
-
-        fetchUser();
-    }, []);
-
     return (
-        // the Provider gives access to the context to its children
-        <UserContext.Provider value={user}>
+        <UserContextProvider>
             <Page />
-        </UserContext.Provider>
+        </UserContextProvider>
     );
 };
 
 const Page = () => {
     // access the context value
-    const user = useContext(UserContext);
+    const user = useUserContextState();
 
     if (user?.login?.username) {
         return <p>You are logged in as {user?.login.username}</p>;
