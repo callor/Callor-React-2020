@@ -16,7 +16,7 @@ console.table(arr);
 console.log(arr); // [ <10 empty items>, 100 ]
 console.log(arr.length);
 
-const arr1 = Array(10).fill(0);
+const arr1 = Array(3).fill(0);
 console.table(arr1);
 
 for (let i = 0; i < 10; i++) {
@@ -24,4 +24,4 @@ for (let i = 0; i < 10; i++) {
 }
 
 const objs = [{ a: 1, b: 2, c: 3 }];
-console.log(objs[3]?.a);
+console.log(objs[3].a);
