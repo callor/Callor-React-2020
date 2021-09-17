@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { RenderSquare, calculateWinner } from "../modules/main";
 
 function Board() {
-    const [squares, setSquares] = useState(Array(9).fill(null));
+    const [squares, setSquares] = useState(Array(9).fill(""));
     const [nextOk, setNextOk] = useState(true);
 
+    console.log("시작:", squares);
     const onClick = (e) => {
         const index = e.target.dataset.id;
         if (calculateWinner(squares) || squares[index]) {
@@ -27,6 +28,15 @@ function Board() {
             {/* 함수로 사용할때 : RenderSquare(squares, onClick) */}
             {/* 컴포넌트로 사용할때 */}
             <RenderSquare squares={squares} onClick={onClick} />
+            <h3>{status}</h3>
+            <h4
+                onClick={() => {
+                    setSquares("");
+                    setNextOk(winner === "O" ? true : false);
+                }}
+            >
+                {status ? "다시시작" : ""}
+            </h4>
         </div>
     );
 }

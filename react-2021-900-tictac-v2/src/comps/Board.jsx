@@ -1,45 +1,5 @@
 import React, { useState } from "react";
-import { Square } from "../comps";
-
-const RenderSquare = (props) => {
-    const { squares, onClick } = props;
-    let boxIndex = 0;
-    const SquarArray = [...Array(3).keys()].map((row) => {
-        const squer = [...Array(3).keys()].map((item) => (
-            <Square
-                value={squares[boxIndex]}
-                id={boxIndex++}
-                onClick={onClick}
-            />
-        ));
-        return <div style={{ display: "flex" }}>{squer}</div>;
-    });
-    return SquarArray;
-};
-
-function calculateWinner(squares) {
-    const lines = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (
-            squares[a] &&
-            squares[a] === squares[b] &&
-            squares[a] === squares[c]
-        ) {
-            return squares[a];
-        }
-    }
-    return null;
-}
+import { RenderSquare, calculateWinner } from "../modules/main";
 
 function Board() {
     const [squares, setSquares] = useState(Array(9).fill(0));
@@ -94,8 +54,8 @@ function Board() {
     // const current_sq = history[stepMove.stepNumber];
     const winner = calculateWinner(squares);
     let status = winner
-        ? "Winner: " + winner
-        : `Next player: ${nextOk ? "O" : "X"}`;
+        ? `${winner} 승리`
+        : `다음 Player : ${nextOk ? "O" : "X"}`;
     return (
         <div className="main-section">
             <div className="game-main">
@@ -105,19 +65,15 @@ function Board() {
                     onClick={onClick}
                 />
             </div>
-            <div className="game-info">
-                <div>
-                    <h3>{status}</h3>
-                </div>
-                <ol className="game-history">
-                    {timeMS.history.map((step, move) => {
-                        const desc = move
-                            ? `다음으로 이동  #${move}`
-                            : `게임 다시 시작`;
-                        return <li onClick={() => jumpTo(move)}>{desc}</li>;
-                    })}
-                </ol>
-            </div>
+            <ol className="game-history">
+                <li>{status}</li>
+
+                {timeMS.history.map((step, move) => {
+                    const desc = move ? `되돌리기 #${move}` : `다시 시작`;
+                    return <li onClick={() => jumpTo(move)}>{desc}</li>;
+                })}
+            </ol>
+            <div id="canvas"></div>
         </div>
     );
 }

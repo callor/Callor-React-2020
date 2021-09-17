@@ -2,16 +2,11 @@ body {
     font: 14px "Century Gothic", Futura, sans-serif;
 }
 
-ol,
-ul {
-    padding-left: 30px;
-}
-
 .status {
     margin-bottom: 10px;
 }
 
-.square {
+button.square {
     background: #fff;
     border: 1px solid #999;
     font-size: 40px;
@@ -26,16 +21,18 @@ ul {
     text-align: center;
 }
 
-.square:focus {
-    outline: none;
+button.square:hover {
+    background-color: #999;
 }
 
-.kbd-navigation .square:focus {
-    background: #ddd;
+button.square:focus {
+    outline: none;
 }
 
 div.main-section {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .game {
@@ -46,8 +43,16 @@ div.main-section {
 .game-info {
     margin-left: 20px;
     height: 50vh;
-    width: 30vw;
+    min-width: 30vw;
     overflow: auto;
+    justify-content: center;
+}
+
+ol.game-history {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
 }
 
 ol.game-history li {
@@ -55,5 +60,14 @@ ol.game-history li {
     line-height: 0.7em;
     border: 1px solid green;
     padding: 1rem;
+    margin: 5px;
     cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+@media (max-width: 720px) {
+    ol.game-history {
+        min-width: 100wv;
+    }
 }
