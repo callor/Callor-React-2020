@@ -1,0 +1,72 @@
+header.detail_header {
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  width: 1000px;
+  background-image: url("../image/atelier.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+  border-radius: 0 0 50px 50px;
+
+  text-shadow: 2px 2px 2px black;
+
+  margin: 0 auto;
+  margin-bottom: 5vh;
+}
+
+div.map {
+  width: 616px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+hr {
+  width: 1000px;
+  margin: 10px auto;
+}
+
+div.postscr_list {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+div.postscr_insert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1000px;
+  margin: 0 auto;
+}
+
+button.image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+input[name="postscript"] {
+  height: 60px;
+  width: 50%;
+  border-radius: 5px;
+}
+
+button.postscr_save {
+  width: 10%;
+  border: none;
+  padding: 5px 12px;
+  margin: 5px 10px;
+}
+
+h3.re_size {
+  margin-right: 850px;
+  color: #61dafb;
+}
