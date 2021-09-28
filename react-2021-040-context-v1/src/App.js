@@ -1,9 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import MessageContext from "./context/MessageContext";
+
 import MessageUpdate from "./comps/MessageUpdate";
 import MessageView from "./comps/MessageView";
-import MessageProvidor from "./providor/MessageProvidor";
 
 function App() {
     const [phone, setPhone] = useState({
@@ -34,10 +35,9 @@ function App() {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
             </header>
-            <MessageProvidor.Provider value={providorData}>
-                <MessageUpdate />
-                <MessageView />
-            </MessageProvidor.Provider>
+            <MessageContext.Provider value={providorData}>
+                <MessageMain />
+            </MessageContext.Provider>
         </div>
     );
 }

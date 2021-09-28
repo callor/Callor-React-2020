@@ -1,135 +1,70 @@
-# React Context API
+# Getting Started with Create React App
 
--   React의 Context API를 사용하는 것은 종종 매우 유용하다.  
-    React의 컨텍스트와 함께 정기적으로 사용해야 하는 몇 가지 패턴이 있으며 이러한 패턴은 잘 알려져 있지 않다.  
-    이 프로젝트에서 공유하고 있으므로 전문가처럼 React Contexts를 사용할 수 있다.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
--   시작하기 전에 간단한 알림으로, 여기에 컨텍스트의 바닐라 후크 기반 구현이 있다.  
-    (다양한 패턴의 예로 사용할 것입니다).
+## Available Scripts
 
-'''
+In the project directory, you can run:
 
-    import React, { useContext, createContext, useState, useEffect } from 'react';
+### `yarn start`
 
-    // create context
-    const UserContext = createContext();
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-    const App = () => {
-    // the value that will be given to the context
-    const [user, setUser] = useState(null);
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-    // fetch a user from a fake backend API
-    useEffect(() => {
-    const fetchUser = () => {
-    // this would usually be your own backend, or localStorage
-    // for example
-    	fetch('https://randomuser.me/api/')
-    		.then((response) => response.json())
-    		.then((result) => setUser(result.results[0]))
-    		.catch((error) => console.log('An error occurred');
-        };
+### `yarn test`
 
-        fetchUser();
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-    }, []);
+### `yarn build`
 
-    return (
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-    		// the Provider gives access to the context to its children
-    		<UserContext.Provider value={user}>
-    			<Page />
-    		</UserContext.Provider>
-    	);
-    };
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-    const Page = () => {
-    	// access the context value
-    	const user = useContext(UserContext);
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-    	if (user?.login?.username) {
-    		return <p>You are logged in as {user?.login.username}</p>;
-    	} else {
-    		return <p>You are not logged in</p>;
-    	}
-    };
+### `yarn eject`
 
-    export default App;
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## 다른 파일에서 React Context 로직 추출
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
--   위의 코드에서 내가 마음에 들지 않는 한 가지는 서로 관련이 거의 없을 때 컨텍스트 논리가 앱 코드와 혼합되어 있다는 것이다.  
-    앱은 자식에게만 컨텍스트를 제공하기를 원하며 이 컨텍스트가 어떻게 만들어지는지는 신경 쓰지 않는다.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
--   이 모든 논리를 외부 파일로 추출해 보겠다.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## 사용자 지정 공급자와 함께 React Context 사용
+## Learn More
 
--   먼저 UserContext.jsx라는 새 파일 내부에 UserContextProvider 구성 요소를 만든다  
-    이 구성 요소는 컨텍스트(사용자)의 값을 가져오고 이를 UserContext.Provider에 제공하는 논리를 보유하는 구성 요소이다.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-''''
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-UserContext.jsx
-import React, { createContext, useState, useEffect } from "react";
+### Code Splitting
 
-// create context
-const UserContext = createContext();
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-const UserContextProvider = ({ children }) => {
-// the value that will be given to the context
-const [user, setUser] = useState(null);
+### Analyzing the Bundle Size
 
-// fetch a user from a fake backend API
-useEffect(() => {
-const fetchUser = () => {
-// this would usually be your own backend, or localStorage
-// for example
-fetch("https://randomuser.me/api/")
-.then((response) => response.json())
-.then((result) => setUser(result.results[0]))
-.catch((error) => console.log("An error occured"));
-};
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-    fetchUser();
+### Making a Progressive Web App
 
-}, []);
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-return (
-// the Provider gives access to the context to its children
-<UserContext.Provider value={user}>
-{children}
-</UserContext.Provider>
-);
-};
+### Advanced Configuration
 
-export { UserContext, UserContextProvider };
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
--   이제 App 구성 요소에서 위의 내용을 제거했으므로 훨씬 더 깔끔해졌다.
+### Deployment
 
-''''
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-App.jsx
-import React, { useContext } from "react";
+### `yarn build` fails to minify
 
-import { UserContext, UserContextProvider } from "./UserContext";
-
-const App = () => {
-return (
-<UserContextProvider>
-<Page />
-</UserContextProvider>
-);
-};
-
-const Page = () => {
-// access the context value
-const user = useContext(UserContext);
-
-if (user?.login?.username) {
-return <p>You are logged in as {user?.login.username}</p>;
-} else {
-return <p>You are not logged in</p>;
-}
-};
-
-export default App;
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

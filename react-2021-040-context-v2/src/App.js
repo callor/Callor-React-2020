@@ -1,25 +1,20 @@
-import {
-    UserContextProvider,
-    useUserContextState,
-} from "./context/UserContext";
+import logo from "./logo.svg";
+import "./App.css";
+import { PhoneContextProvider } from "./context/PhoneContextProvider";
 
-const App = () => {
+import PhoneMain from "./comps/PhoneBookMain";
+
+function App() {
     return (
-        <UserContextProvider>
-            <Page />
-        </UserContextProvider>
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+            </header>
+            <PhoneContextProvider>
+                <PhoneMain />
+            </PhoneContextProvider>
+        </div>
     );
-};
-
-const Page = () => {
-    // access the context value
-    const user = useUserContextState();
-
-    if (user?.login?.username) {
-        return <p>You are logged in as {user?.login.username}</p>;
-    } else {
-        return <p>You are not logged in</p>;
-    }
-};
+}
 
 export default App;
