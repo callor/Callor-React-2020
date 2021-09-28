@@ -1,6 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import MessageUpdate from "./comps/MessageUpdate";
+import MessageView from "./comps/MessageView";
 import MessageProvidor from "./providor/MessageProvidor";
 
 function App() {
@@ -13,11 +15,18 @@ function App() {
 
     const [phoneBook, setPhoneBook] = useState([]);
 
+    const [message, setMessage] = useState("전달");
+    const [isEdit, setEdit] = useState(false);
+    // Provider에 JSON객체 type으로 묶어서 전달할 것
     const providorData = {
         phone,
         setPhone,
         phoneBook,
         setPhoneBook,
+        message,
+        setMessage,
+        isEdit,
+        setEdit,
     };
 
     return (
@@ -25,9 +34,10 @@ function App() {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
             </header>
-            <MessageProvidor.Provider
-                value={providorData}
-            ></MessageProvidor.Provider>
+            <MessageProvidor.Provider value={providorData}>
+                <MessageUpdate />
+                <MessageView />
+            </MessageProvidor.Provider>
         </div>
     );
 }
