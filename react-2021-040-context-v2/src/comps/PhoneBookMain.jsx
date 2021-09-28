@@ -1,5 +1,7 @@
 import PhoneView from "./PhoneBookView";
-import PhoneBookUpdate from "./PhoneBookUpdate";
+import PhoneBookInsert from "./PhoneBookInsert";
+import PhoneBookListView from "./PhoneBookListView";
+import { Route } from "react-router-dom";
 
 /**
  * App.js 에서 MessageMain.jsx를 포함
@@ -15,8 +17,16 @@ import PhoneBookUpdate from "./PhoneBookUpdate";
 function PhoneMain() {
     return (
         <div>
-            <PhoneBookUpdate />
-            <PhoneView />
+            <Route path="/" exact>
+                <PhoneBookInsert />
+                <PhoneView />
+            </Route>
+            <Route path="/insert" exact>
+                <PhoneBookInsert />
+            </Route>
+            <Route path="/list" exact>
+                <PhoneBookListView />
+            </Route>
         </div>
     );
 }

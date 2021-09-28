@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .App {
     text-align: center;
 }
@@ -35,4 +40,71 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+ul.main_nav {
+    display: flex;
+    background-color: blue;
+    list-style: none;
+}
+
+ul.main_nav li {
+    padding: 10px;
+    color: white;
+}
+
+ul.main_nav a {
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+}
+
+ul.main_nav li:hover {
+    background-color: lawngreen;
+}
+
+div.input_box {
+    width: 80vw;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+div.input_box label,
+div.input_box input {
+    display: inline-block;
+    padding: 8px;
+    margin: 5px;
+}
+
+div.input_box label {
+    width: 20%;
+    text-align: right;
+}
+
+div.input_box input {
+    width: 70%;
+}
+div.input_box button {
+    display: inline-block;
+    width: 30%;
+    margin: 5px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+}
+
+table.phoneBook_list {
+    width: 80vw;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table.phoneBook_list th,
+table.phoneBook_list td {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #777;
 }

@@ -1,8 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { PhoneContextProvider } from "./context/PhoneContextProvider";
+import { BrowserRouter } from "react-router-dom";
 
 import PhoneMain from "./comps/PhoneBookMain";
+import MainNav from "./comps/MainNav";
 
 function App() {
     return (
@@ -10,9 +12,12 @@ function App() {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
             </header>
-            <PhoneContextProvider>
-                <PhoneMain />
-            </PhoneContextProvider>
+            <BrowserRouter>
+                <MainNav />
+                <PhoneContextProvider>
+                    <PhoneMain />
+                </PhoneContextProvider>
+            </BrowserRouter>
         </div>
     );
 }

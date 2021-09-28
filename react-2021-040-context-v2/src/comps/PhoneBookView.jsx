@@ -1,6 +1,6 @@
-import { usePhoneUpdateContext } from "../context/PhoneContextProvider";
+import { usePhoneInsertContext } from "../context/PhoneContextProvider";
 const PhoneView = () => {
-    const { phone } = usePhoneUpdateContext();
+    const { phone } = usePhoneInsertContext();
     return (
         <div>
             <p>이름 :{phone.p_name} </p>

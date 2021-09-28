@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const PhoneContext = createContext();
 
-const usePhoneUpdateContext = () => {
+const usePhoneInsertContext = () => {
     const context = useContext(PhoneContext);
     return context;
 };
@@ -32,4 +32,4 @@ const PhoneContextProvider = ({ children }) => {
     );
 };
 
-export { PhoneContextProvider, usePhoneUpdateContext };
+export { PhoneContextProvider, usePhoneInsertContext };
