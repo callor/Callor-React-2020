@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
-
-import { UserContext, UserContextProvider } from "../context/UserContext";
+import {
+    UserContextProvider,
+    useUserContextState,
+} from "./context/UserContext";
 
 const App = () => {
     return (
