@@ -65,15 +65,16 @@ div.input_box input {
     width: 70%;
 }
 div.input_box button {
-    display: inline-block;
+    display: block;
     width: 20%;
 
     padding: 0.9rem;
     background-color: blue;
     color: white;
 
-    margin-left: 0;
-    /* transform: translateX(-50%); */
+    margin-left: auto;
+    margin-right: 3em;
+    /* transform: translateX(-30%); */
 }
 
 div.book_view {

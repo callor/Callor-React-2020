@@ -31,7 +31,7 @@ const BookInsert = () => {
                     onChange={onChange}
                     value={book.b_genre}
                 />
-                <CaButton onClick={bookInsert}>리스트 추가</CaButton>
+                <button onClick={bookInsert}>리스트 추가</button>
             </div>
             <BookView />
         </>
