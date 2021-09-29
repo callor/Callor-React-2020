@@ -1,25 +1,25 @@
-import {
-    UserContextProvider,
-    useUserContextState,
-} from "./context/UserContext";
+import logo from "./logo.svg";
+import "./App.css";
+import { BookContextProvider } from "./context/ContextProvider";
+import { BrowserRouter } from "react-router-dom";
 
-const App = () => {
+import BookMain from "./comps/BookMain";
+import MainNav from "./comps/MainNav";
+
+function App() {
     return (
-        <UserContextProvider>
-            <Page />
-        </UserContextProvider>
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+            </header>
+            <BrowserRouter>
+                <MainNav />
+                <BookContextProvider>
+                    <BookMain />
+                </BookContextProvider>
+            </BrowserRouter>
+        </div>
     );
-};
-
-const Page = () => {
-    // access the context value
-    const user = useUserContextState();
-
-    if (user?.login?.username) {
-        return <p>You are logged in as {user?.login.username}</p>;
-    } else {
-        return <p>You are not logged in</p>;
-    }
-};
+}
 
 export default App;

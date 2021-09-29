@@ -1,0 +1,21 @@
+nav.main_nav {
+    display: flex;
+    background-color: blue;
+    color: white;
+}
+
+/*
+  react-router-dom의 Link 컴포넌트로 navi를 구현하면
+  구현할 navi 적용할 Css a tag를 대상으로 설정해준다
+  */
+nav.main_nav a {
+    display: inline-block;
+    color: inherit;
+    padding: 1rem;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav.main_nav a:hover {
+    background-color: blueviolet;
+}
