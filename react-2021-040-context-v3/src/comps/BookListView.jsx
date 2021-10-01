@@ -3,9 +3,10 @@ const BookListView = () => {
     const { bookList } = useBookInsertContext();
 
     const viewList = bookList.map((book, index) => {
+        console.log(book.b_id);
         return (
             <tr key={book.b_id}>
-                <td>{book + 1}</td>
+                <td>{book.b_id}</td>
                 <td>{book.b_name}</td>
                 <td>{book.b_genre}</td>
             </tr>

@@ -9,9 +9,9 @@ const useBookInsertContext = () => {
 
 const BookContextProvider = ({ children }) => {
     const [book, setBook] = useState({
-        p_id: 1,
-        p_name: "",
-        p_genre: "",
+        b_id: 1,
+        b_name: "",
+        b_genre: "",
     });
 
     const [bookList, setBookList] = useState([]);
