@@ -12,20 +12,32 @@ const AppContextProvider = ({ children }) => {
         t_text: " 리액트 소개",
         t_isComplete: false,
     });
-    const [todoList, setTodoList] = useState([
-        {
-            t_id: 0,
-            t_text: " 리액트 소개",
-            t_isComplete: false,
-        },
-    ]);
+    const [todoList, setTodoList] = useState([]);
 
     const onChange = (e) => {
         setTodo({ ...todo, t_text: e.target.value, t_id: nextid.current });
     };
     const todoInsert = () => {
+        if (todo.t_text === "") {
+            window.alert("할일을 입력하세요~!!");
+            inputId.current.focus();
+            return;
+        }
         setTodoList([...todoList, todo]);
-        nextid.current = todoList.length;
+        nextid.current++;
+        todoClear();
+    };
+
+    const todoClear = () => {
+        setTodo({
+            t_text: "",
+            t_id: nextid.current,
+            t_isComplete: false,
+        });
+    };
+
+    const onClick = () => {
+        todoInsert();
     };
     const onKeyPress = (e) => {
         if (e.key === "Enter") {
@@ -46,8 +58,20 @@ const AppContextProvider = ({ children }) => {
         setTodoList(nextTodos);
     };
 
+    const onCompleteClick = (e) => {
+        const t_id = Number(e.currentTarget.dataset.id);
+        // alert(t_id);
+        completeToggle(t_id);
+    };
+
     const todoDelete = (id) => {
         setTodoList(todoList.filter((todo) => todo?.t_id !== id));
+    };
+
+    const onDeleteClick = (e) => {
+        e.stopPropagation();
+        const t_id = Number(e.target.dataset.id);
+        todoDelete(t_id);
     };
 
     const props = {
@@ -55,9 +79,9 @@ const AppContextProvider = ({ children }) => {
         todoList,
         onChange,
         onKeyPress,
-        todoInsert,
-        todoDelete,
-        completeToggle,
+        onClick,
+        onDeleteClick,
+        onCompleteClick,
         inputId,
     };
     return <AppContext.Provider value={props}>{children}</AppContext.Provider>;

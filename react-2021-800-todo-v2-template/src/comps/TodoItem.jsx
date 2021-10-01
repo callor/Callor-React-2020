@@ -5,16 +5,15 @@ function TodoItem({ todo }) {
     const id = todo.t_id;
     const checked = todo.t_isComplete;
     const text = todo.t_text;
-    const { completeToggle, todoDelete } = useTotoContext();
+
+    const { onCompleteClick, onDeleteClick } = useTotoContext();
     return (
-        <div className="todo-item" onClick={() => completeToggle(id)}>
-            <div
-                className="remove"
-                onClick={(e) => {
-                    e.stopPropagation(); // onToggle 이 실행되지 않도록 함
-                    todoDelete(id);
-                }}
-            >
+        <div
+            className="todo-item"
+            onClickCapture={onCompleteClick}
+            data-id={id}
+        >
+            <div className="remove" onClickCapture={onDeleteClick} data-id={id}>
                 &times;
             </div>
             <div className={`todo-text ${checked && "checked"}`}>
