@@ -60,7 +60,7 @@ const AppContextProvider = ({ children }) => {
 
     const onCompleteClick = (e) => {
         const t_id = Number(e.currentTarget.dataset.id);
-        // alert(t_id);
+        alert(t_id);
         completeToggle(t_id);
     };
 
@@ -70,6 +70,7 @@ const AppContextProvider = ({ children }) => {
 
     const onDeleteClick = (e) => {
         e.stopPropagation();
+
         const t_id = Number(e.target.dataset.id);
         todoDelete(t_id);
     };
