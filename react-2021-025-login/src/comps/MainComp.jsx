@@ -4,9 +4,10 @@ import MainNav from "./MainNav";
 import JoinForm from "./JoinForm";
 import LoginForm from "./LoginForm";
 import Notice from "./Notice";
+import BBs from "./BBs";
 
 function MainComp() {
-    const { user, setUser } = useUserContext();
+    const { user } = useUserContext();
     // useEffect(() => {
     //     fetchData();
     // }, []);
@@ -27,6 +28,9 @@ function MainComp() {
         <MainNav navList={navList}>
             <Route exact path="/notice">
                 <Notice />
+            </Route>
+            <Route exact path="/bbs">
+                <BBs />
             </Route>
             <Route exact path="/login">
                 <LoginForm />

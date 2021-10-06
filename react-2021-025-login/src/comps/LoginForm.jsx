@@ -45,7 +45,7 @@ const Button = styled.div`
 function LoginForm(props) {
     //글로벌 전역 상태값 setUser를 받아옴
     //로그인이 성공적으로 이루어지면 user에 상태값을 넣어줘야지 나중에 다른 컴포넌트에서도 user값을 이용하여 다른 것들을 할 수 있음
-    const { user, setUser } = useUserContext();
+    const { setUser } = useUserContext();
     //url 이동을 위한 useHistory
     const history = useHistory();
 

@@ -30,10 +30,10 @@ export default function Clock() {
             }
         }, 1000);
     };
-    useEffect(
-        useCallback(() => clockOn(), [clockOn]),
-        []
-    );
+    useEffect(() => {
+        useCallback(() => clockOn(), [clockOn]);
+        return () => alert("Effect 종료");
+    }, []);
 
     const onClick = () => {
         setClock({
