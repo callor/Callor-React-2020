@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect } from "react";
+import { fetchData } from "../module/fetchLogin.js";
 import { useUserContext } from "../context/UserContextProvider.jsx";
+import { useHistory } from "react-router-dom";
 
-function BBs() {
+function MyPage() {
     const { setUser } = useUserContext();
     const history = useHistory();
 
@@ -12,7 +14,7 @@ function BBs() {
     const fetchCB = useCallback(async () => {
         const user = await fetchData();
         await setUser(user);
-        console.log("여기는 자유게시판");
+        console.log("여기는 MyPage", user?.id);
         if (user?.id) {
             console.log("사용자 ID", user?.id);
         } else {
@@ -21,11 +23,15 @@ function BBs() {
     }, [setUser]);
 
     useEffect(fetchCB, [fetchCB]);
-    // useEffect(() => {
-    //     fetchCB();
-    //     // return () => {console.log("Effect 종료")};
-    // }, [fetchCB]);
-    return <div>자유게시판</div>;
+    useEffect(() => {
+        fetchCB();
+        // return () => {console.log("Effect 종료")};
+    }, [fetchCB]);
+    return (
+        <div>
+            <h1>MyPage</h1>
+        </div>
+    );
 }
 
-export default BBs;
+export default MyPage;

@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import { useUserContext } from "../context/UserContextProvider";
 import MainNav from "./MainNav";
+import AuthRoute from "./AuthRoute";
 import JoinForm from "./JoinForm";
 import LoginForm from "./LoginForm";
 import Logout from "./Logout";
@@ -12,9 +13,6 @@ import MyPage from "./MyPage";
 
 function MainComp() {
     const { user } = useUserContext();
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
 
     const navList = [
         { id: 0, title: "Home", link: "/" },
@@ -40,13 +38,19 @@ function MainComp() {
                 <Logout />
             </Route>
             <Route exact path="/notice">
-                <Notice />
+                <AuthRoute>
+                    <Notice />
+                </AuthRoute>
             </Route>
             <Route exact path="/bbs">
-                <BBs />
+                <AuthRoute>
+                    <BBs />
+                </AuthRoute>
             </Route>
             <Route exact path="/mypage">
-                <MyPage />
+                <AuthRoute>
+                    <MyPage />
+                </AuthRoute>
             </Route>
         </MainNav>
     );

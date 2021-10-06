@@ -3,7 +3,9 @@ import { useUserContext } from "../context/UserContextProvider";
 
 function Notice() {
     const { setUser } = useUserContext();
+    const history = useHistory();
     const fetchCB = useCallback(async () => {
+        console.log("여기는 공지사항");
         const res = await fetch("http://localhost:8080/users/", {
             method: "POST",
             header: {
@@ -15,6 +17,11 @@ function Notice() {
         const result = await res.json();
         console.log("result", result);
         await setUser(result);
+        if (user?.id) {
+            console.log("사용자 ID", user?.id);
+        } else {
+            history.replace("/login");
+        }
     }, [setUser]);
 
     /**
@@ -29,7 +36,7 @@ function Notice() {
      * 이때는 함수 이름을 매개변수로 넣어준다
      *
      */
-    useEffect(() => fetchCB, [fetchCB]);
+    useEffect(fetchCB, [fetchCB]);
     return <div>공지사항</div>;
 }
 
