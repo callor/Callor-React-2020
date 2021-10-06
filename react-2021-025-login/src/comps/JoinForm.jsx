@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { fetchLogin } from "../module/fetchLogin";
 import PropsComp from "./PropsComp";
 import { useHistory } from "react-router-dom";
-import { useUserContext } from "../context/UserContextProvider";
 
 const Container = styled.div`
     margin-top: 10px;
@@ -33,7 +32,7 @@ const Button = styled.div`
     color: #fff;
     border: none;
     border-radius: 0;
-    background-color: #03c75a;
+    background-color: rgb(59, 59, 168);
     ${({ disabled }) =>
         disabled &&
         `
@@ -45,7 +44,9 @@ const Button = styled.div`
 function LoginForm(props) {
     //글로벌 전역 상태값 setUser를 받아옴
     //로그인이 성공적으로 이루어지면 user에 상태값을 넣어줘야지 나중에 다른 컴포넌트에서도 user값을 이용하여 다른 것들을 할 수 있음
-    const { user, setUser } = useUserContext();
+    // const { setUser } = useUserContext();
+    const [user, setUser] = useState();
+
     //url 이동을 위한 useHistory
     const history = useHistory();
 
@@ -55,7 +56,7 @@ function LoginForm(props) {
         password: "",
     });
 
-    // console.log(props);
+    console.log(props);
 
     //input에 입력하면 자동적으로 account state값 변경
     const onChangeAccount = (e) => {
@@ -71,12 +72,12 @@ function LoginForm(props) {
     //동기식으로 로그인정보를 통신하여 출력
     const onSubmitAccount = async () => {
         try {
-            const result = await fetchLogin(account);
-            console.table(result);
-            alert(JSON.stringify(result));
+            const user = await fetchLogin(account);
+            console.table(user);
+            alert(JSON.stringify(user));
 
             //성공하면 해당 user 아이디 패스워드값 셋팅
-            setUser(result);
+            setUser(user);
             //성공하면 해당 url로 이동(main페이지로)
             history.replace("/");
         } catch (error) {
@@ -99,8 +100,22 @@ function LoginForm(props) {
                 placeholder="비밀번호를 입력해주세요"
                 onChange={onChangeAccount}
             />
-            <Button onClick={onSubmitAccount}>로그인</Button>
-            <PropsComp>대한민국</PropsComp>
+            <Input
+                id="re_password"
+                name="re_password"
+                type="re_password"
+                placeholder="비밀번호를 한번 더 입력해주세요"
+                onChange={onChangeAccount}
+            />
+            <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="E-mail을 입력해 주세요"
+                onChange={onChangeAccount}
+            />
+
+            <Button onClick={onSubmitAccount}>회원가입</Button>
         </Container>
     );
 }

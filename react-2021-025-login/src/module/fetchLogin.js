@@ -1,15 +1,28 @@
 //동기식 방식 ( async await 사용!!!!!)
 export const fetchLogin = async ({ id, password }) => {
-    const response = await fetch("http://localhost:8888/users");
+    console.log(id, password);
+    const response = await fetch("http://localhost:8080/users/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            id: id,
+            password: password,
+        }),
+    });
 
     if (response.ok) {
         //서버통신이 성공적으로 이루어지면 users에 json값 대입
-        const users = await response.json();
+        const user = await response.json();
 
         //users안 객체들을 순회하면서 그 객체들의 id값과 form 컴포넌트에서 받음 account의 id값과 비교
         //서로 일치하는 것만 user에 대입
-        const user = users.find((user) => user.id === id);
+        // const user = users.find((user) => user.id === id);
         //일치하는 user가 없거나, 비밀번호가 틀리면 해당 에러 생성
+        console.log("result", user);
         if (!user || user.password !== password) {
             throw new Error("아이디 또는 비밀번호가 일치하지 않습니다.");
         }
@@ -21,4 +34,16 @@ export const fetchLogin = async ({ id, password }) => {
 
     //서버 통신이 안이루어졌을떄
     throw new Error("서버 통신이 원할하지 않습니다.");
+};
+
+export const fetchData = async () => {
+    const res = await fetch("http://localhost:8080/users/");
+    // , {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     credentials: "include",
+    // });
+    const result = await res.json();
+    console.log("result", result);
+    return result;
 };
