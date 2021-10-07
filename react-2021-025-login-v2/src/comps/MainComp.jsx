@@ -5,7 +5,7 @@ import AuthRoute from "./AuthRoute";
 import JoinForm from "./JoinForm";
 import LoginForm from "./LoginForm";
 import Logout from "./Logout";
-
+import Member from "./Member";
 // Route Comps
 import Notice from "./Notice";
 import BBs from "./BBs";
@@ -23,8 +23,8 @@ function MainComp() {
             : { id: 3, title: "로그인", link: "/login", align: true },
 
         user?.id
-            ? { id: 4, title: "마이페이지", link: "/mypage" }
-            : { id: 4, title: "회원가입", link: "/join" },
+            ? { id: 4, title: "마이페이지", link: "/mypage", roll: "user" }
+            : { id: 4, title: "회원가입", link: "/join", roll: "guest" },
     ];
     return (
         <MainNav navList={navList}>
@@ -50,6 +50,11 @@ function MainComp() {
             <Route exact path="/mypage">
                 <AuthRoute>
                     <MyPage />
+                </AuthRoute>
+            </Route>
+            <Route exact path="/member">
+                <AuthRoute>
+                    <Member roll="ADMIN" />
                 </AuthRoute>
             </Route>
         </MainNav>

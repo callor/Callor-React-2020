@@ -8,15 +8,15 @@ function Notice() {
         console.log("여기는 공지사항");
         const res = await fetch("http://localhost:8080/users/", {
             method: "POST",
-            header: {
+            headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "http://localhost:3000",
             },
             credentials: "include",
         });
-        const result = await res.json();
-        console.log("result", result);
-        await setUser(result);
+        const resultUser = await res.json();
+        console.log("result", resultUser);
+        await setUser(resultUser);
         if (user?.id) {
             console.log("사용자 ID", user?.id);
         } else {

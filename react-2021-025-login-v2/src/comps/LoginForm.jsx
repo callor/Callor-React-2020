@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { fetchLogin } from "../module/fetchLogin";
+import { fetchLogin } from "../module/fetchModule";
 import { useHistory } from "react-router-dom";
 import { useUserContext } from "../context/UserContextProvider";
 

@@ -1,3 +1,18 @@
+export const fetchJoin = async (joinData) => {
+    const response = await fetch("http://localhost:8080/users/join", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(joinData),
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        return result;
+    }
+};
+
 //동기식 방식 ( async await 사용!!!!!)
 export const fetchLogin = async ({ id, password }) => {
     console.log(id, password);
@@ -36,8 +51,8 @@ export const fetchLogin = async ({ id, password }) => {
     throw new Error("서버 통신이 원할하지 않습니다.");
 };
 
-export const fetchData = async () => {
-    const res = await fetch("http://localhost:8080/users/", {
+export const fetchUser = async () => {
+    const response = await fetch("http://localhost:8080/users/", {
         method: "POST",
         header: {
             "Content-Type": "application/json",
@@ -45,7 +60,25 @@ export const fetchData = async () => {
         },
         credentials: "include",
     });
-    const result = await res.json();
-    console.log("result", result);
+    if (response.ok) {
+        const user = await response.json();
+        console.log("result User", user);
+        return user;
+    } else {
+        return [];
+    }
+};
+
+export const fetchLogout = async () => {
+    const res = await fetch("http://localhost:8080/users/logout", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+        },
+        credentials: "include",
+    });
+    const result = await res.text();
+    console.log(result);
     return result;
 };

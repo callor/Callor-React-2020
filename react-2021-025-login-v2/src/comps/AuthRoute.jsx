@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { fetchData } from "../module/fetchLogin.js";
+import { fetchUser } from "../module/fetchModule";
 import { useUserContext } from "../context/UserContextProvider.jsx";
 import React, { useCallback, useEffect } from "react";
 
@@ -12,9 +12,10 @@ function AuthRoute({ children }) {
     const history = useHistory();
 
     const fetchCB = useCallback(async () => {
-        const user = await fetchData();
+        const user = await fetchUser();
+        console.log("fetch user", user);
         await setUser(user);
-        console.log("여기는 자유게시판");
+        console.log("여기는 member만 사용할 수 있는 page 입니다");
         if (user?.id) {
             console.log("사용자 ID", user?.id);
         } else {
@@ -24,7 +25,7 @@ function AuthRoute({ children }) {
 
     useEffect(fetchCB, [fetchCB]);
 
-    history.replace("/login");
+    // history.replace("/login");
 
     return <>{children}</>;
 }

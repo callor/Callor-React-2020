@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { fetchLogin } from "../module/fetchLogin";
-import PropsComp from "./PropsComp";
+import { fetchJoin } from "../module/fetchModule.js";
 import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
@@ -72,7 +71,7 @@ function LoginForm(props) {
     //동기식으로 로그인정보를 통신하여 출력
     const onSubmitAccount = async () => {
         try {
-            const user = await fetchLogin(account);
+            const user = await fetchJoin(account);
             console.table(user);
             alert(JSON.stringify(user));
 

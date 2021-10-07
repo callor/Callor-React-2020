@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { fetchData } from "../module/fetchLogin.js";
+import { fetchUser } from "../module/fetchModule.js";
 import { useUserContext } from "../context/UserContextProvider.jsx";
 import { useHistory } from "react-router-dom";
 
@@ -12,7 +12,7 @@ function MyPage() {
      * 매개변수에 state의 setter 함수를 넣어주어야 한다
      */
     const fetchCB = useCallback(async () => {
-        const user = await fetchData();
+        const user = await fetchUser();
         await setUser(user);
         console.log("여기는 MyPage", user?.id);
         if (user?.id) {

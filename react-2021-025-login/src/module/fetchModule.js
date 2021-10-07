@@ -36,7 +36,7 @@ export const fetchLogin = async ({ id, password }) => {
     throw new Error("서버 통신이 원할하지 않습니다.");
 };
 
-export const fetchData = async () => {
+export const fetchUser = async () => {
     const res = await fetch("http://localhost:8080/users/", {
         method: "POST",
         header: {
