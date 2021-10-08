@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Google from "./coms/Google";
+import GoogleButton from "./custom/GoogleButton";
 
 function App() {
     return (
@@ -8,7 +8,7 @@ function App() {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
             </header>
-            <Google />
+            <GoogleButton />
         </div>
     );
 }

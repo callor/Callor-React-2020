@@ -1,40 +1,6 @@
 import { useRef, useState, useEffect } from "react";
+import "../css/Google.css";
 
-const GoogleBtn = styled.div`
-    #customBtn {
-        width: 100%;
-        height: 50px;
-        border: none;
-        margin-bottom: 3px;
-        padding-left: 4%;
-        display: flex;
-        align-items: center;
-        background-color: #dd4b39;
-    }
-    #customBtn:hover {
-        cursor: pointer;
-    }
-    span.label {
-        font-family: ${theme.fontContent};
-        font-weight: normal;
-    }
-    span.icon {
-        width: 100%;
-        background: url("/images/google2.png");
-        background-size: 120%;
-        background-position: center;
-        display: inline-block;
-        vertical-align: middle;
-        width: 42px;
-        height: 42px;
-    }
-    span.buttonText {
-        font-family: ${theme.fontContent};
-        font-size: 16px;
-        font-weight: bold;
-        color: ${theme.white};
-    }
-`;
 function Google() {
     const googleLoginBtn = useRef(null);
     const [token, setToken] = useState("");
@@ -48,7 +14,8 @@ function Google() {
     }, []);
 
     //SDK 초기 설정 및 내 API초기화
-    const googleSDK = () => {
+
+    const googleSDK_init = () => {
         window.googleSDKLoaded = () => {
             console.log(window.gapi);
             window.gapi.load("auth2", () => {
@@ -61,6 +28,7 @@ function Google() {
                     googleLoginBtn.current,
                     {},
                     (googleUser) => {
+                        console.log("getProfile");
                         const profile = googleUser.getBasicProfile();
                         console.log(profile);
                         console.log(
@@ -78,26 +46,31 @@ function Google() {
                 );
             });
         };
+    };
+
+    const googleSDK = () => {
         //구글 SDK 불러오기
-        (function (d, s, id) {
+        (function (doc, script, id) {
             let js;
-            const fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
+            const fjs = doc.getElementsByTagName(script)[0];
+            if (doc.getElementById(id)) {
                 return;
             }
-            js = d.createElement(s);
+            js = doc.createElement(script);
             js.id = id;
             js.src =
                 "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
             fjs.parentNode.insertBefore(js, fjs);
         })(document, "script", "google-jssdk");
     };
+
     useEffect(() => {
+        googleSDK_init();
         googleSDK();
     }, []);
 
     return (
-        <GoogleBtn id="gSignInWrapper">
+        <div id="gSignInWrapper">
             <span className="label" />
             <div
                 ref={googleLoginBtn}
@@ -107,7 +80,7 @@ function Google() {
                 <span className="icon"></span>
                 <span className="buttonText">Login with Google</span>
             </div>
-        </GoogleBtn>
+        </div>
     );
 }
 
