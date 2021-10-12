@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/callor-react/static/css/main.b22b6f1d.chunk.css",
-    "main.js": "/callor-react/static/js/main.c222179c.chunk.js",
-    "main.js.map": "/callor-react/static/js/main.c222179c.chunk.js.map",
+    "main.js": "/callor-react/static/js/main.a6be5b9b.chunk.js",
+    "main.js.map": "/callor-react/static/js/main.a6be5b9b.chunk.js.map",
     "runtime-main.js": "/callor-react/static/js/runtime-main.590f0d62.js",
     "runtime-main.js.map": "/callor-react/static/js/runtime-main.590f0d62.js.map",
     "static/js/2.9a5d88a8.chunk.js": "/callor-react/static/js/2.9a5d88a8.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.590f0d62.js",
     "static/js/2.9a5d88a8.chunk.js",
     "static/css/main.b22b6f1d.chunk.css",
-    "static/js/main.c222179c.chunk.js"
+    "static/js/main.a6be5b9b.chunk.js"
   ]
 }
