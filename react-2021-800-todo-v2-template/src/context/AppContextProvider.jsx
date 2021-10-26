@@ -9,7 +9,7 @@ const AppContextProvider = ({ children }) => {
     const inputId = useRef();
     const [todo, setTodo] = useState({
         t_id: 0,
-        t_text: " 리액트 소개",
+        t_text: "",
         t_isComplete: false,
     });
     const [todoList, setTodoList] = useState([]);

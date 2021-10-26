@@ -57,7 +57,7 @@ function GoogleButton({ googleUser, setGoogleUser }) {
             }
             await auth2.attachClickHandler(
                 googleLoginBtn.current,
-                {},
+                {}, // option
                 googleOkReturn,
                 (err) => alert(JSON.stringify(err, undefined, 2))
             );
