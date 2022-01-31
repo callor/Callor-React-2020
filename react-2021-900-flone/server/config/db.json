@@ -1,9 +1,0 @@
-{
-    "development" : {
-        "host" : "",
-        "username" : "",
-        "password" : "",
-        "database" : "",
-        "dialect" : ""
-    }
-}
