@@ -99,7 +99,7 @@ const AuthForm = () => {
       <form onSubmit={onSubmit} className="container">
         <select name="curriculum" data-msg="훈련직종은" className="authInput" value={inputBox.curriculum} onChange={onChangInputBox} data-size="2">
           <option value="NONE">훈련직종선택</option>
-          <option value="응용SW3회차">응용SW엔지니어링 3회차</option>
+          <option value="스마트웹&콘텐츠">스마트웹&콘텐츠1회차</option>
         </select>
         {authError.curriculum && <span className="authError">{authError.curriculum}</span>}
 
