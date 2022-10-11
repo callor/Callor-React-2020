@@ -88,31 +88,82 @@ const AuthForm = () => {
     <div className="authContainer">
       <h2>한국경영원 인재개발원</h2>
       <p className="notice">
-        이메일, 문자메시지, 카톡을 통하여 자료를
-        <br />
-        제공해 드리고 소통을 위한 카톡 단톡방 개설을 위하여 이메일과 휴대폰번호를 요청합니다
-        <br />
-        입력하신 정보는 보안서버에 등록되어 개인정보 유출을 하지 않으며
-        <br />
-        기타 다른 용도는 일체 사용하지 않습니다.
+        <ul>
+          <li>
+            이메일, 문자메시지, 카톡을 통하여 자료를
+            <br />
+            제공해 드리고 소통을 위한 카톡 단톡방 개설을 위하여
+            <br />
+            이메일과 휴대폰번호를 요청합니다
+          </li>
+          <li>
+            입력하신 정보는 보안서버에 등록되어 개인정보 유출 되지 않도록
+            관리하며
+            <br />
+            기타 다른 용도는 일체 사용하지 않습니다.
+          </li>
+        </ul>
       </p>
       <form onSubmit={onSubmit} className="container">
-        <select name="curriculum" data-msg="훈련직종은" className="authInput" value={inputBox.curriculum} onChange={onChangInputBox} data-size="2">
+        <select
+          name="curriculum"
+          data-msg="훈련직종은"
+          className="authInput"
+          value={inputBox.curriculum}
+          onChange={onChangInputBox}
+          data-size="2"
+        >
           <option value="NONE">훈련직종선택</option>
-          <option value="스마트웹&콘텐츠">스마트웹&콘텐츠1회차</option>
+          <option value="FullStack">MEAR 기반 FullStack 개발자과정</option>
         </select>
-        {authError.curriculum && <span className="authError">{authError.curriculum}</span>}
+        {authError.curriculum && (
+          <span className="authError">{authError.curriculum}</span>
+        )}
 
-        <input name="email" data-msg="이메일은" type="email" placeholder="Email" value={inputBox.email} onChange={onChangInputBox} className="authInput" />
-        {authError.email && <span className="authError">{authError.email}</span>}
+        <input
+          name="email"
+          data-msg="이메일은"
+          type="email"
+          placeholder="Email"
+          value={inputBox.email}
+          onChange={onChangInputBox}
+          className="authInput"
+        />
+        {authError.email && (
+          <span className="authError">{authError.email}</span>
+        )}
 
-        <input name="userName" data-msg="이름은" type="text" placeholder="이름" value={inputBox.userName} onChange={onChangInputBox} className="authInput" />
-        {authError.userName && <span className="authError">{authError.userName}</span>}
+        <input
+          name="userName"
+          data-msg="이름은"
+          type="text"
+          placeholder="이름"
+          value={inputBox.userName}
+          onChange={onChangInputBox}
+          className="authInput"
+        />
+        {authError.userName && (
+          <span className="authError">{authError.userName}</span>
+        )}
 
-        <input name="phone" data-msg="전화번호는" type="phone" placeholder="010-1111-1111" value={inputBox.phone} onChange={onChangInputBox} className="authInput" />
-        {authError.phone && <span className="authError">{authError.phone}</span>}
+        <input
+          name="phone"
+          data-msg="전화번호는"
+          type="phone"
+          placeholder="010-1111-1111"
+          value={inputBox.phone}
+          onChange={onChangInputBox}
+          className="authInput"
+        />
+        {authError.phone && (
+          <span className="authError">{authError.phone}</span>
+        )}
 
-        <input type="submit" className="authInput authSubmit" value="등록하기" />
+        <input
+          type="submit"
+          className="authInput authSubmit"
+          value="등록하기"
+        />
       </form>
     </div>
   );
