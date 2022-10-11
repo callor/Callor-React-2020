@@ -11,6 +11,12 @@
   color: yellowgreen;
 }
 
+.comp_title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: yellow;
+}
+
 form.container {
   width: 100%;
   max-width: 320px;
@@ -70,6 +76,7 @@ form.container {
 
 .notice {
   color: yellowgreen;
-  width: 50vw;
+  width: 100%;
+  max-width: 400px;
   margin: 10px auto;
 }

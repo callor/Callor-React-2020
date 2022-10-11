@@ -86,7 +86,7 @@ const AuthForm = () => {
 
   return (
     <div className="authContainer">
-      <h2>한국경영원 인재개발원</h2>
+      <h2 className="comp_title">한국경영원 인재개발원</h2>
       <p className="notice">
         <ul>
           <li>
@@ -132,7 +132,7 @@ const AuthForm = () => {
         {authError.email && (
           <span className="authError">{authError.email}</span>
         )}
-
+        <p>* 이름은 띄어쓰기 없이 입력해 주세요 </p>
         <input
           name="userName"
           data-msg="이름은"
@@ -146,6 +146,7 @@ const AuthForm = () => {
           <span className="authError">{authError.userName}</span>
         )}
 
+        <p>* 전화번호 중간에 반드시 - 기호를 넣어주세요</p>
         <input
           name="phone"
           data-msg="전화번호는"
